@@ -22,6 +22,8 @@ CEF DLL、资源、语言包及版权声明通过 NonUFS 收录，Helper 也是 
 
 普通 Unreal C++ 编译和 BuildPlugin 不下载工具。不要在 Build.cs 构造函数中下载。`Scripts/Build-FabPlugin.ps1` 使用官方 RunUAT BuildPlugin，对新输出目录执行 Win64 插件构建。
 
+插件描述文件还声明了 Editor 构建后步骤：`Prepare-OrionCEFRuntime.ps1` 将随包的匹配 CEF 运行文件复制到插件 `Binaries/Win64/OrionCEF3`。这只准备本地文件，用于补齐官方插件预编译过滤普通运行依赖复制动作的情况，不下载配套 EXE。
+
 ## 成品游戏
 
 Development 与 Shipping 游戏使用打包到游戏二进制旁的 Helper，不进行 EXE 存在性预检、版本/哈希检查、下载或修复。缺失或损坏文件仍可能产生正常的操作系统或 CEF 启动错误，此时应修复发行包。

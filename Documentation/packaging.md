@@ -22,6 +22,8 @@ The sample project includes `Scripts/Package-Development.ps1` and `Scripts/Packa
 
 Normal Unreal C++ compilation and `BuildPlugin` do not download tools. Do not put network downloads into `.Build.cs` constructors. `Scripts/Build-FabPlugin.ps1` invokes official `RunUAT BuildPlugin` against a new output directory and Win64.
 
+The plugin descriptor also declares an Editor post-build step: `Prepare-OrionCEFRuntime.ps1` copies the paired, already bundled CEF runtime into plugin `Binaries/Win64/OrionCEF3`. This is local file preparation only. It is needed when official plugin precompilation filters normal runtime-dependency copy actions; it never downloads companion executables.
+
 ## Packaged runtime
 
 The packaged Development and Shipping games use the staged Helper beside the game binary. They do not perform EXE existence probes, hash/version checks, downloads or repairs. A missing/corrupt staged file can still cause a normal OS or CEF startup error. Repair the distributed package; do not expect a customer's game to install development tools.

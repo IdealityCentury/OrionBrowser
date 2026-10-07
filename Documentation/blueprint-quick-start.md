@@ -46,7 +46,7 @@ In the WebUI child's **On Web Event**:
 
 For an operation that needs a result or an error, use `api.call` and handle **On Web Request**. Use the provided Response Handle to **Resolve** a JSON result or **Reject** with a code and message. Resolve exactly once. Do not report success before Unreal has accepted the action.
 
-The generic JSON nodes accept JSON objects up to 1 MiB. Missing or wrongly typed fields return `Valid=false`. An empty source passed to a setter creates an object; malformed source is preserved with `Valid=false`.
+The generic JSON nodes accept object input up to 1,048,576 UTF-16 code units (Unreal string length). Missing or wrongly typed fields return `Valid=false`. An empty source passed to a setter creates an object; malformed source is preserved with `Valid=false`.
 
 ## Lifecycle and cleanup
 

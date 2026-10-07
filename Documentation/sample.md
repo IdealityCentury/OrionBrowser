@@ -42,6 +42,12 @@ Navigation is stored in the controller's bounded `PageStack` Blueprint array. Re
 
 `PublishState` constructs the sample control-sound policy from UE sound assets and the saved volume. The web controls use its named `Station` context. The lab binds the emblem texture and scene capture as native surfaces and requests a runtime image through `RequestTextureResource`; the completion event publishes `ue:station.image`. Closing the host releases texture requests, native surfaces and its active sound policy. These are Blueprint wiring examples; inspect the corresponding event graphs to adapt their lifetime to your own page.
 
+## Keyboard and world input
+
+Use **WASD** to move while an expedition is active on the world page. **E** activates a focused visible WorldUI control, or the visible control nearest the screen center. The native WorldUI checks still enforce identity, visibility and interaction range. **I** opens or returns from the inventory. **P** opens the menu or returns to the preceding page; **Escape** is also available as an app Back key when the host delivers it to the game. Unreal Editor may reserve Escape for Stop Play, so use P during PIE and verify Escape in Standalone or the packaged game.
+
+The sample PlayerController consumes its keyboard shortcuts before the engine SpectatorPawn bindings, preventing E from also moving the pawn vertically. Web keyboard handlers prevent duplicate default dispatch, ignore repeat/composition where appropriate, and leave text editing to the input field. Menu pages block pawn movement and look input while the web controls remain active.
+
 ## Editing the UI
 
 The source lives in plugin `WebUIApps/Showcase/src`; production files are in `WebUIApps/Showcase/dist`. `state.ts` defines the web state and English/Chinese dictionary. `webui-preview.json` declares eight design views. The preview does not replace a game test.

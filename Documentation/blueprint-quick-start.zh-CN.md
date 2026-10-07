@@ -35,7 +35,7 @@
 
 需要操作结果和错误时，网页使用 `api.call`，蓝图处理 **On Web Request**，通过 Response Handle **Resolve** JSON 结果或 **Reject** 错误码与信息。每个请求只完成一次，Unreal 接受业务操作之后才能报告成功。
 
-JSON 节点接受最大 1 MiB 的对象。字段缺失、类型错误或 JSON 无效时 `Valid=false`。Setter 的空来源创建新对象；无效来源保持原样并返回失败。
+JSON 节点接受对象输入，长度最多为 1,048,576 个 UTF-16 代码单元（Unreal 字符串长度）。字段缺失、类型错误或 JSON 无效时 `Valid=false`。Setter 的空来源创建新对象；无效来源保持原样并返回失败。
 
 ## 生命周期
 

@@ -42,6 +42,12 @@
 
 `PublishState` 使用 UE 音效资产和已保存音量构造示例控件声音策略，网页控件使用命名为 `Station` 的声音上下文。实验室将徽记纹理和场景捕获绑定为 Native Surface，并通过 `RequestTextureResource` 请求运行时图片；完成事件发布 `ue:station.image`。关闭宿主时释放纹理请求、Native Surface 和活动声音策略。可以在相应事件图中查看接线，并按自己的页面生命周期调整。
 
+## 键盘与世界输入
+
+在已开始任务的世界页面使用 **WASD** 移动。**E** 激活当前聚焦的可见 WorldUI 控件，或最靠近屏幕中心的可见控件；原生 WorldUI 仍检查身份、可见性与交互距离。**I** 打开或返回背包。**P** 打开菜单或返回上一页；宿主将按键交给游戏时，**Escape** 也作为界面返回键。Unreal Editor 可能把 Escape 保留为停止游玩，因此 PIE 中使用 P，并在 Standalone 或成品游戏中验收 Escape。
+
+示例 PlayerController 会先消费自己的键盘快捷键，避免 E 同时触发引擎 SpectatorPawn 的竖直移动。网页键盘处理会防止重复的默认分发，按情况忽略重复及组合输入，并将文字编辑留给输入框。菜单页面阻止 Pawn 移动和视角输入，网页控件继续正常工作。
+
 ## 修改界面
 
 网页源码位于插件 `WebUIApps/Showcase/src`，生产文件位于 `WebUIApps/Showcase/dist`。`state.ts` 定义网页状态及中英文字典，`webui-preview.json` 登记八种设计视图。预览不能代替游戏测试。
