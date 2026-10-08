@@ -4,14 +4,17 @@ HTML, CSS and JavaScript interfaces for **Unreal Engine 5.8 / Win64**. Use Bluep
 
 [English manual](Documentation/README.md) · [简体中文手册](Documentation/README.zh-CN.md) · [Companion downloads](https://github.com/IdealityCentury/OrionBrowser/releases/tag/1.0.0) · [Support](https://orionue.com)
 
-This public repository contains documentation, AI creation Skills and companion-tool releases. The commercial Unreal plugin is distributed separately. A Fab listing link will be added once the real listing is available; this repository does not claim Fab approval.
+This public repository contains documentation, AI creation Skills, a separate Blueprint sample project and companion-tool releases. The commercial Unreal plugin is distributed separately. A Fab listing link will be added once the real listing is available; this repository does not claim Fab approval.
 
 ## Install the plugin and open the example
 
 1. Install the complete OrionBrowser plugin in your Unreal project and enable it.
-2. Let the editor prepare the matching Helper and WebUIStudio files. Progress, cancellation and retry appear in the editor.
-3. Show Plugin Content, open `/OrionBrowser/Showcase/L_OrionBrowserOverview`, and Play.
-4. Inspect `WBP_OrionBrowserShowcase` and `BP_OrionStationController` for the Blueprint-to-web wiring.
+2. In a blank project, complete the [CommonUI viewport setup](Documentation/installation.md#commonui-viewport). The supplied separate sample already includes it.
+3. Let the editor prepare the matching Helper and WebUIStudio files. Progress, cancellation and retry appear in the editor.
+4. Show Plugin Content, open `/OrionBrowser/Showcase/L_OrionBrowserOverview`, and Play.
+5. Inspect `WBP_OrionBrowserShowcase` and `BP_OrionStationController` for the Blueprint-to-web wiring.
+
+The separate [Orion Station Blueprint project](Examples/OrionBrowserTemplate/README.md) contains its own startup map, configuration and fixed packaging scripts. Install your licensed OrionBrowser plugin under its `Plugins/OrionBrowser` directory before opening the project. The example does not include the commercial plugin or any private game module.
 
 [Create a Blueprint interface](Documentation/blueprint-quick-start.md) · [Use AI to build a web app](Documentation/ai-workflow.md) · [Orion Station sample](Documentation/sample.md)
 
@@ -31,7 +34,7 @@ Cook/packaging prepares Helper. Packaged Development and Shipping games use thei
 
 ## 中文说明
 
-此仓库公开文档、AI 制作 Skill 与配套工具，收费 Unreal 插件单独分发。首次打开编辑器时，插件按自身版本从同名 Release 下载 Helper 和 WebUIStudio 到插件 `Binaries/Win64`，并执行文件大小与 SHA-256 校验。无需登录 GitHub，支持中断恢复、取消、重试及离线导入。
+此仓库公开文档、AI 制作 Skill、独立纯蓝图示例与配套工具，收费 Unreal 插件单独分发。[下载并使用猎户空间站示例](Examples/OrionBrowserTemplate/README.zh-CN.md)，打开前将已购买的完整插件安装到示例的 `Plugins/OrionBrowser`。示例不包含收费插件源码或任何私有游戏模块。首次打开编辑器时，插件按自身版本从同名 Release 下载 Helper 和 WebUIStudio 到插件 `Binaries/Win64`，并执行文件大小与 SHA-256 校验。无需登录 GitHub，支持中断恢复、取消、重试及离线导入。
 
 “猎户空间站”是中英双语蓝图示例，展示菜单、设置、背包、任务状态、声音、输入、WorldUI、纹理、运行时图片、three.js 和独立官网浏览区域。具体实现与运行验收边界请查看发行验收记录，Studio 预览不代替 Unreal 或成品包测试。
 

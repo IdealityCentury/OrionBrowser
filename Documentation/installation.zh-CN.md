@@ -8,9 +8,21 @@
 2. 通过 Fab 安装，或者把完整插件目录复制到工程的 `Plugins/OrionBrowser`。同一引擎与工程组合不要保留两个插件副本。
 3. 打开工程，在 Plugins 中启用 **OrionBrowser**，按 Unreal 提示重启。插件使用 CommonUI 等引擎内置能力，不需要其他私有游戏框架。
 4. 编辑器初始化后自动在后台检查两个配套程序。Helper 准备好之后才创建浏览器；Studio 的准备状态独立，下载 Studio 不阻塞已经可用的 WebUI。
-5. 在内容浏览器启用 **显示插件内容**，打开 `OrionBrowser/Showcase/L_OrionBrowserOverview`，点击运行。
+5. 空白工程先按下文配置 CommonUI 视口；随附的猎户空间站工程已经包含此设置。
+6. 在内容浏览器启用 **显示插件内容**，打开 `OrionBrowser/Showcase/L_OrionBrowserOverview`，点击运行。
 
 每次打开工程不会自动启动 WebUIStudio。需要制作和预览页面时，使用编辑器工具栏的 Orion WebUIStudio 入口。
+
+## CommonUI 视口
+
+OrionBrowser 会启用引擎的 CommonUI 插件。CommonUI 输入路由要求游戏视口继承 **CommonGameViewportClient**。在空白蓝图工程的 Project Settings 中，将 **Game Viewport Client Class** 设为 **CommonGameViewportClient**，然后重启编辑器。对应的工程 `Config/DefaultEngine.ini` 设置如下：
+
+```ini
+[/Script/Engine.Engine]
+GameViewportClientClassName=/Script/CommonUI.CommonGameViewportClient
+```
+
+如果游戏已有自定义视口，保留该类并确保其继承 CommonGameViewportClient；直接替换可能丢失游戏原有的视口行为。插件不会覆盖工程的自定义视口。缺少此配置时，页面仍可能显示并响应鼠标点击，同时 CommonUI 报告输入路由错误，因此首次显示不能证明键盘和手柄路由已经就绪。不要用关闭诊断替代视口配置。
 
 ## 版本与固定位置
 

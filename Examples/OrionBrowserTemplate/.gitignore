@@ -1,0 +1,8 @@
+Binaries/
+Build/
+Builds/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+Plugins/OrionBrowser/

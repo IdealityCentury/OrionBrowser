@@ -2,6 +2,8 @@
 
 使用启用 OrionBrowser、Helper 已准备好的 UE 5.8 空白蓝图工程。工程无需自己的 C++ 模块；插件自身包含原生模块。
 
+空白工程测试输入前，先完成[CommonUI 视口配置](installation.zh-CN.md#commonui-视口)。随附的猎户空间站工程已设置 CommonGameViewportClient；接入已有游戏时保留兼容的自定义视口。
+
 ## 显示内置页面
 
 1. 内容浏览器启用**显示插件内容**。

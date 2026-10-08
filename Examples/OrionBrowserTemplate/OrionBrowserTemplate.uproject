@@ -1,0 +1,16 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "5.8",
+  "Category": "Samples",
+  "Description": "Orion Station: a Blueprint-only OrionBrowser showcase.",
+  "Plugins": [
+    {
+      "Name": "OrionBrowser",
+      "Enabled": true
+    },
+    {
+      "Name": "AndroidFileServer",
+      "Enabled": false
+    }
+  ]
+}

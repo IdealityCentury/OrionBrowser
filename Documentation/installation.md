@@ -8,9 +8,21 @@ All plugin paths below are relative to the directory containing `OrionBrowser.up
 2. Install the plugin through Fab, or copy the complete supplied plugin directory to the project's `Plugins/OrionBrowser`. Do not install a second copy in the same engine/project combination.
 3. Open the project, enable **OrionBrowser** in Plugins, and restart if Unreal requests it. The plugin uses engine-provided CommonUI and related engine modules; no private game framework is required.
 4. After Editor initialization, OrionBrowser checks the two companion applications in the background. Wait for **Helper ready** before using a browser. WebUIStudio readiness is independent; downloading Studio does not stop a prepared browser.
-5. In the Content Browser, enable **Show Plugin Content**, open `OrionBrowser/Showcase/L_OrionBrowserOverview`, then Play.
+5. In a blank project, configure the CommonUI viewport as described below. The supplied Orion Station project already includes this setting.
+6. In the Content Browser, enable **Show Plugin Content**, open `OrionBrowser/Showcase/L_OrionBrowserOverview`, then Play.
 
 Opening the project never launches WebUIStudio automatically. Use the Orion WebUIStudio toolbar action when you want to author or preview pages.
+
+## CommonUI viewport
+
+OrionBrowser enables the engine's CommonUI plugin. CommonUI input routing requires a game viewport derived from **CommonGameViewportClient**. In a blank Blueprint project, set **Game Viewport Client Class** in Project Settings to **CommonGameViewportClient**, then restart the editor. The corresponding project `Config/DefaultEngine.ini` setting is:
+
+```ini
+[/Script/Engine.Engine]
+GameViewportClientClassName=/Script/CommonUI.CommonGameViewportClient
+```
+
+If your game already uses a custom viewport, retain that class and ensure it derives from CommonGameViewportClient; replacing it could remove your game's viewport behavior. The plugin does not overwrite a project's custom viewport. A page can display and receive a mouse click without this setup while CommonUI reports an input-router error, so first display alone is not proof that keyboard/controller routing is ready. Do not suppress the diagnostic to substitute for configuring the viewport.
 
 ## Exact versions and locations
 

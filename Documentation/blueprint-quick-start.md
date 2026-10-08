@@ -2,6 +2,8 @@
 
 Use a blank UE 5.8 Blueprint project with OrionBrowser enabled and Helper ready. Your project does not need a C++ module. The plugin itself contains native modules, as other Unreal code plugins do.
 
+Complete the [CommonUI viewport setup](installation.md#commonui-viewport) before testing input in a blank project. The supplied Orion Station project already sets CommonGameViewportClient; preserve a compatible custom viewport in an existing game.
+
 ## Display the supplied page
 
 1. Enable **Show Plugin Content** in the Content Browser.
