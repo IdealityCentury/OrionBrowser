@@ -15,3 +15,5 @@ To package, run `Scripts/Package-Development.ps1` or `Scripts/Package-Shipping.p
 Keep the complete output directory when sharing or testing a packaged game. After preparation, local sample content is offline; only the external website needs a network connection. The game does not download or repair EXEs.
 
 The corresponding release acceptance report identifies which environments and input devices were actually tested. Asset authoring, Studio previews and Blueprint compilation are distinct from an Unreal play session or a packaged game run.
+
+The independent sample defaults to a 60 FPS game limit through `Config/DefaultGameUserSettings.ini`, leaving GPU time for the local browser and scene capture. Existing saved user settings override this initial preference. The plugin does not impose this limit on other projects. See the manual's sample rendering-budget guidance when adapting the scene or targeting other hardware.

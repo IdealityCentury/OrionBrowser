@@ -56,6 +56,12 @@
 
 官网使用独立的通用浏览器控件，不是本地 Showcase 文档，也不接收空间站业务 Bridge 和状态事件。
 
+## 渲染预算
+
+独立示例通过工程 `Config/DefaultGameUserSettings.ini` 将初始游戏帧率上限设为 60，为浏览器绘制、场景捕获和游戏留出 GPU 时间。这是示例工程的偏好设置；安装插件不会修改其他工程的帧率上限。已有用户保存的设置优先于这个默认值。
+
+在自己的纯蓝图游戏中，可用 Unreal 的 **Get Game User Settings → Set Frame Rate Limit → Apply Non-Resolution Settings** 选择适合的帧率上限，仅在玩家确认偏好时保存，并在目标硬件验证。不限帧游戏占满 GPU 时，即使原生游戏状态仍变化，浏览器的 GPU 回读也可能停滞。应降低游戏渲染负载或选择可持续的帧率上限；只降低浏览器帧率目标不一定能解决 GPU 争用。
+
 ## 验证状态
 
 发行验收报告分别记录资产创建与蓝图编译、真实 Unreal 会话、Development／Shipping 包体运行、实体手柄及中文输入法。请以对应构建的报告为准，不要将 Studio 预览截图理解为其他环境已通过。

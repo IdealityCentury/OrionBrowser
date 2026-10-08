@@ -56,6 +56,12 @@ Use `WBP_OrionBrowserShowcase` as an editable wiring example, then create your o
 
 The website uses a separate general browser widget. It is not the local Showcase document and does not receive the station's business bridge or state events.
 
+## Rendering budget
+
+The independent sample starts with a 60 FPS game limit in project `Config/DefaultGameUserSettings.ini`. This leaves GPU time for browser rendering, scene capture and the game. It is a sample-project preference; installing the plugin does not change another project's frame limit. Existing saved user settings take precedence over this default.
+
+In your own Blueprint game, use Unreal **Get Game User Settings → Set Frame Rate Limit → Apply Non-Resolution Settings** to choose an appropriate limit, and save it only when the player confirms the preference. Test on your supported hardware. If an uncapped game saturates the GPU, the browser's GPU readback can stall even while native game state continues to change. Lower game rendering load or choose a sustainable frame limit; reducing only the browser frame target may not resolve GPU contention.
+
 ## Verification status
 
 The release acceptance report distinguishes asset creation and Blueprint compilation from an actual Unreal session, packaged Development/Shipping execution, physical gamepad input and Chinese IME input. Consult that report for the tested build; do not interpret Studio preview screenshots as proof of those other environments.
