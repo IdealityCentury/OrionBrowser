@@ -190,7 +190,7 @@ Follow the wiring list the agent delivered. The minimum is six steps; the nodes 
 3. **On Web Event** of `WebUI`: branch on `Event Name`. Read parameters with **Get Json Number / String / Boolean**, check `Valid` first, then the range, and only then change Blueprint variables.
 4. Write a "publish state" function: add one to the revision, build the full state from `{}` with **Set Json Number / String / Boolean**, and call **Post Retained Latest Event to Web** with event `ue:settingsPanel.state`. Call it on `settingsPanel.ready` and after every state change.
 5. **On Web Request** of `WebUI`: handle `settingsPanel.resetDefaults`, then call **Resolve Json** on `Response`, or **Reject** when it is not allowed.
-6. Create the widget in the Player Controller, **Add to Viewport**, show the mouse cursor and call **Set Input Mode Game And UI**.
+6. Create the widget in the Player Controller, **Add to Viewport**, show the mouse cursor and call **Set Input Mode Game And UI** (`Self` to **Player Controller**, `WebUI` to **In Widget to Focus**).
 
 If your agent can operate Unreal through an editor automation tool, it may create the assets and nodes, but only through Unreal's official interfaces. Never let it edit a `.uasset` as text or bytes.
 

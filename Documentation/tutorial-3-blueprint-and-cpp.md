@@ -66,14 +66,14 @@ In the Player Controller (or wherever you manage interfaces):
 
 1. **Create Widget** (Class `WBP_SettingsPanel`, Owning Player `Self`) and store the result in a variable.
 2. **Add to Viewport**.
-3. **Set Input Mode Game And UI**, with the `WebUI` of this Widget connected to **In Widget to Focus**, so that keyboard input reaches the page.
+3. **Set Input Mode Game And UI**: connect `Self` to **Player Controller** and the `WebUI` of this Widget to **In Widget to Focus**, so that keyboard input reaches the page. The **Player Controller** pin does not default to `Self`, and the node does nothing while it is empty: playing in the editor reports an error in the Message Log, and a packaged game gives no hint.
 4. **Set Show Mouse Cursor** to `true`.
 
-To close, do the reverse: **Remove from Parent**, **Set Input Mode Game Only**, hide the cursor. Create an interface once; do not create it every frame.
+To close, do the reverse: **Remove from Parent**, **Set Input Mode Game Only** (its **Player Controller** pin must be connected as well; inside the Widget Blueprint, connect **Get Owning Player**), hide the cursor. Create an interface once; do not create it every frame.
 
 ### 4. Receive actions: On Web Event
 
-Select `WebUI` in Designer and click the plus next to **On Web Event** under **Events** at the bottom of Details. The event gives `Event Name` and `Payload Json`. Connect a **Switch on Name** and add one output per event name:
+Select `WebUI` in Designer and click the plus next to **On Web Event** under **Events** at the bottom of Details. The event gives `Event Name` and `Payload Json`. Connect a **Switch on Name** and add one output per event name (select the node and enter the names under **Pin Names** in Details). The editor shows pin names with spaces, so `settingsPanel.setVolume` appears as `Settings Panel.set Volume`; that is display only, and the comparison still uses the name you entered. Handle the outputs as follows:
 
 **`settingsPanel.ready`**: call `PublishState` from the next section.
 
@@ -109,7 +109,7 @@ Always send the **full state**, never "what changed". `stateRevision` only incre
 
 ### 6. Requests that need a result: On Web Request
 
-Add the **On Web Request** event of `WebUI`. It gives `Request` and `Response`. Break `Request` to get `Name` and `Payload Json`, and connect a **Switch on Name** again:
+Add the **On Web Request** event of `WebUI`. It gives `Request` and `Response`. Break `Request` to get `Name` and `Payload Json`: the **Break** node lists only `Id` and `Api Version` at first, and the arrow at its bottom reveals `Name`, `Payload Json` and the other members. Then connect a **Switch on Name** again:
 
 **`settingsPanel.resetDefaults`**:
 
@@ -741,11 +741,11 @@ The complete contract, the configuration fields and troubleshooting are in the [
 | --- | --- |
 | The page is blank | Are `AppId`, the folder name and `orionWebUI.appId` identical? Does `dist/index.html` exist? Look at **On Web Error** |
 | Designer shows `Orion WebUI dist entry is missing` | The app was not built, or `AppId` is wrong |
-| Clicks do nothing | Is **On Web Event** bound on `WebUI`? Do the event names match character for character? Is `Valid` `false`? |
+| Clicks do nothing | Is **On Web Event** bound on `WebUI`? Do the event names match character for character (read them under **Pin Names**; the node shows them with spaces)? Is `Valid` `false`? |
 | The page keeps showing an old value | Do you publish after every change? Does `stateRevision` increase? |
 | A request waits until it times out | **Defer** was called but no answer followed |
 | A request always "succeeds" | The Default branch has no **Reject**, so the request was answered automatically |
-| Keyboard and gamepad do nothing | Is the viewport a CommonGameViewportClient (see [installation](installation.md#commonui-viewport))? Did the input mode and focus go to `WebUI`? |
+| Keyboard and gamepad do nothing | Is the viewport a CommonGameViewportClient (see [installation](installation.md#commonui-viewport))? Did the input mode and focus go to `WebUI`? Is the **Player Controller** pin of **Set Input Mode Game And UI** empty? |
 | The page disappears or stops responding after **Set Presentation Lifecycle State** | **Preparing** hid the widget, or **Covered Suspended** or **Closing** parked the browser. **Visible** undoes neither: call **Release Native Presentation Gate** after **Preparing**, and wake a parked browser with **Preparing**. A Blueprint-only page should use **Visible** alone |
 | No sound | Is a policy active? Do the controls have Ids? Does `Context Id` match? Is the sound asset empty? |
 | A runtime image does not show | Did you wait for **Ready** before giving the address to the page? Is it a virtual texture? |

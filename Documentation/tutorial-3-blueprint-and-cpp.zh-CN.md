@@ -66,14 +66,14 @@
 
 1. **Create Widget**（Class 选 `WBP_SettingsPanel`，Owning Player 接 `Self`），把返回值保存为变量。
 2. **Add to Viewport**。
-3. **Set Input Mode Game And UI**，把这个 Widget 里的 `WebUI` 接到 **In Widget to Focus**，键盘输入才会进入网页。
+3. **Set Input Mode Game And UI**：**Player Controller** 接 `Self`，再把这个 Widget 里的 `WebUI` 接到 **In Widget to Focus**，键盘输入才会进入网页。**Player Controller** 引脚不会自动取 `Self`，空着时这个节点不起作用：在编辑器里运行会在 Message Log 里报一条错误，打包后的游戏没有任何提示。
 4. **Set Show Mouse Cursor** 设为 `true`。
 
-关闭界面时反过来：**Remove from Parent**，**Set Input Mode Game Only**，隐藏鼠标。同一个界面只创建一次，不要每帧创建。
+关闭界面时反过来：**Remove from Parent**，**Set Input Mode Game Only**（它的 **Player Controller** 同样要接；在 Widget 蓝图里执行时接 **Get Owning Player**），隐藏鼠标。同一个界面只创建一次，不要每帧创建。
 
 ### 4. 接收操作：On Web Event
 
-在 Designer 里选中 `WebUI`，在 Details 底部的 **Events** 里点击 **On Web Event** 右边的加号。事件给出 `Event Name` 和 `Payload Json`。接一个 **Switch on Name**，为每个事件名添加一个输出：
+在 Designer 里选中 `WebUI`，在 Details 底部的 **Events** 里点击 **On Web Event** 右边的加号。事件给出 `Event Name` 和 `Payload Json`。接一个 **Switch on Name**，为每个事件名添加一个输出（选中节点，在 Details 的 **Pin Names** 里填写）。编辑器会把引脚名显示成带空格的样子，`settingsPanel.setVolume` 显示为 `Settings Panel.set Volume`；这只是显示，比较时用的仍是你填的名字。各个输出这样处理：
 
 **`settingsPanel.ready`**：直接调用下一节的 `PublishState`。
 
@@ -109,7 +109,7 @@
 
 ### 6. 需要结果的请求：On Web Request
 
-为 `WebUI` 添加 **On Web Request** 事件。它给出 `Request` 和 `Response`。拆开 `Request`（**Break**）取 `Name` 和 `Payload Json`，同样接 **Switch on Name**：
+为 `WebUI` 添加 **On Web Request** 事件。它给出 `Request` 和 `Response`。拆开 `Request`（**Break**）取 `Name` 和 `Payload Json`：**Break** 节点起初只列出 `Id` 和 `Api Version`，点击节点底部的箭头展开，才能看到 `Name`、`Payload Json` 和其余成员。然后同样接 **Switch on Name**：
 
 **`settingsPanel.resetDefaults`**：
 
@@ -741,11 +741,11 @@ InstantScreen 让同一层的多个界面共用一个常驻浏览器。每个界
 | --- | --- |
 | 页面空白 | `AppId`、目录名、`orionWebUI.appId` 三者是否一致；`dist/index.html` 是否存在；看 **On Web Error** |
 | Designer 显示 `Orion WebUI dist entry is missing` | 没有构建，或 `AppId` 写错 |
-| 点击没反应 | **On Web Event** 是否绑定在 `WebUI` 上；事件名是否逐字一致；`Valid` 是否为 `false` |
+| 点击没反应 | **On Web Event** 是否绑定在 `WebUI` 上；事件名是否逐字一致（看 **Pin Names** 里填的名字，节点上显示的带空格）；`Valid` 是否为 `false` |
 | 网页一直停在旧数值 | 是否每次变化后都发布；`stateRevision` 是否递增 |
 | 请求一直等到超时 | 调用了 **Defer** 却没有应答 |
 | 请求总是“成功” | Default 分支没有 **Reject**，被自动应答了 |
-| 键盘、手柄没反应 | 视口是否为 CommonGameViewportClient（见[安装](installation.zh-CN.md#commonui-视口)）；输入模式与焦点是否给了 `WebUI` |
+| 键盘、手柄没反应 | 视口是否为 CommonGameViewportClient（见[安装](installation.zh-CN.md#commonui-视口)）；输入模式与焦点是否给了 `WebUI`；**Set Input Mode Game And UI** 的 **Player Controller** 引脚是否空着 |
 | 调用 **Set Presentation Lifecycle State** 后页面消失或不再响应 | **Preparing** 把控件隐藏了，或者 **Covered Suspended**、**Closing** 把浏览器停驻了。**Visible** 对两者都不起作用：**Preparing** 之后要调用 **Release Native Presentation Gate**，停驻的浏览器要用 **Preparing** 唤醒。纯蓝图的页面只用 **Visible** |
 | 没有声音 | 是否激活了策略；控件有没有 Id；`Context Id` 是否对得上；声音资产是否为空 |
 | 运行时图片不显示 | 是否等到 **Ready** 才把地址给网页；是否是虚拟纹理 |

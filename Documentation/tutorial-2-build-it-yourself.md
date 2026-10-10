@@ -564,8 +564,8 @@ Right-click in the Content Browser, choose **Miscellaneous → Data Asset**, and
 
 1. Create a Widget Blueprint, add an **Orion WebUI** widget (search for `Orion` in the palette), name it `WebUI`, enable **Is Variable**, let it fill its parent, and assign the App Definition.
 2. In the Player Controller, **Create Widget** and **Add to Viewport**.
-3. **Set Input Mode Game And UI** with `WebUI` connected to **In Widget to Focus**; set **Set Show Mouse Cursor** to `true`.
-4. To close: **Remove from Parent**, restore **Set Input Mode Game Only** and hide the cursor.
+3. **Set Input Mode Game And UI** with `Self` connected to **Player Controller** (the node does nothing while that pin is empty) and `WebUI` connected to **In Widget to Focus**; set **Set Show Mouse Cursor** to `true`.
+4. To close: **Remove from Parent**, restore **Set Input Mode Game Only** (its **Player Controller** pin must be connected as well) and hide the cursor.
 
 The Blueprint that receives actions and publishes state is in [Tutorial 3](tutorial-3-blueprint-and-cpp.md#blueprint-only-from-scratch).
 

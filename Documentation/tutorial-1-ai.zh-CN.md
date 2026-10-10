@@ -190,7 +190,7 @@ Agent 应当交回类似这样的表：
 3. `WebUI` 的 **On Web Event**：按 `Event Name` 分支。读取参数用 **Get Json Number / String / Boolean**，先检查 `Valid`，再检查取值范围，通过后才修改蓝图变量。
 4. 写一个“发布状态”函数：版本号加一，用 **Set Json Number / String / Boolean** 从 `{}` 开始拼出完整状态，调用 **Post Retained Latest Event to Web**，事件名 `ue:settingsPanel.state`。收到 `settingsPanel.ready` 和每次状态变化后都调用它。
 5. `WebUI` 的 **On Web Request**：处理 `settingsPanel.resetDefaults`，完成后对 `Response` 调用 **Resolve Json**，不允许时调用 **Reject**。
-6. 在 Player Controller 里创建这个 Widget，**Add to Viewport**，显示鼠标并设置 **Set Input Mode Game And UI**。
+6. 在 Player Controller 里创建这个 Widget，**Add to Viewport**，显示鼠标并设置 **Set Input Mode Game And UI**（**Player Controller** 接 `Self`，**In Widget to Focus** 接 `WebUI`）。
 
 Agent 能通过编辑器自动化工具操作 Unreal 时，可以让它来建资产和连节点，但必须走 Unreal 的正式接口；任何时候都不要让它用文本或二进制方式修改 `.uasset`。
 

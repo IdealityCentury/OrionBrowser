@@ -564,8 +564,8 @@ npm.cmd run dev
 
 1. 新建 Widget 蓝图，放入 **Orion WebUI**（控件面板里搜索 `Orion`），命名为 `WebUI`，勾选 **Is Variable**，铺满父级，指定 App Definition。
 2. 在 Player Controller 里 **Create Widget**、**Add to Viewport**。
-3. **Set Input Mode Game And UI**，把 `WebUI` 接到 **In Widget to Focus**；**Set Show Mouse Cursor** 设为 `true`。
-4. 关闭时 **Remove from Parent**，恢复 **Set Input Mode Game Only** 并隐藏鼠标。
+3. **Set Input Mode Game And UI**：**Player Controller** 接 `Self`（空着时这个节点不起作用），把 `WebUI` 接到 **In Widget to Focus**；**Set Show Mouse Cursor** 设为 `true`。
+4. 关闭时 **Remove from Parent**，恢复 **Set Input Mode Game Only**（**Player Controller** 同样要接）并隐藏鼠标。
 
 接收操作和发布状态的蓝图见[教程 3](tutorial-3-blueprint-and-cpp.zh-CN.md#纯蓝图从零接入)。
 
