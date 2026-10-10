@@ -112,7 +112,7 @@
 
 `webui-preview.json` 登记二十四种设计视图：每个页面、每个展室、任务 HUD、任务完成、中文、手柄提示、减弱动效、三套主题和两种背景。手柄视图像 Unreal 一样，用宿主事件发送输入设备和按键提示。WebUI Studio 的替身宿主不应答 `station.action`，所以在 Studio 里由页面自己模拟导航和偏好；在游戏中只有蓝图能改变状态。预览不能代替游戏测试。
 
-`src/assets` 中的影片和配乐是生成的，不是录制的。`tools/make_soundtrack.py` 用 NumPy 合成配乐。加上 `--song` 时改用你自己的曲目：测出速度、节拍网格和强拍，从强拍处截取七小节，并校准到 120 BPM。`tools/render_film.mjs` 把循环打包成一个自包含的 1440 × 1440 HTML 文件，再用 Playwright 渲染：先每拍出一帧（`--beats`），然后每帧渲染四个子帧，由 FFmpeg 混合并编码。两者都不属于构建流程，Playwright 也不是应用的依赖，只在修改循环之后运行；所需环境和命令写在各文件开头。
+`src/assets` 中的影片和配乐是生成的，不是录制的。插件的 `Content/Python/Showcase/make_soundtrack.py` 用 NumPy 合成配乐。加上 `--song` 时改用你自己的曲目：测出速度、节拍网格和强拍，从强拍处截取七小节，并校准到 120 BPM。`tools/render_film.mjs` 把循环打包成一个自包含的 1440 × 1440 HTML 文件，再用 Playwright 渲染：先每拍出一帧（`--beats`），然后每帧渲染四个子帧，由 FFmpeg 混合并编码。两者都不属于构建流程，Playwright 也不是应用的依赖，只在修改循环之后运行；所需环境和命令写在各文件开头。
 
 将 `WBP_OrionBrowserShowcase` 作为可编辑接线示例，创建自己的 AppDefinition 和控件。同步修改 AppId 与事件名称，并将状态结构、允许操作和蓝图合同一起交给 AI。做法见[教程 1：用 AI 制作界面](tutorial-1-ai.zh-CN.md)，接线本身的逐步说明见[教程 3](tutorial-3-blueprint-and-cpp.zh-CN.md)。
 

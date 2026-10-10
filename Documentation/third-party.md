@@ -6,7 +6,7 @@ The example uses bundled, unmodified Geist, Geist Mono and Noto Sans SC fonts, V
 
 The Type room of the Showcase also names nine fonts that Windows usually has, such as Segoe UI and Microsoft YaHei. They are referred to by name only: no file of theirs is in the plugin, and each is drawn only on a machine where it is already installed. Ship the fonts your own interface depends on, under a licence that allows it.
 
-Everything else in the sample is original and generated: the pavilion, the solar system, the galaxy, the black hole and the asteroid field are built in code and shaded by procedures, the pavilion's textures are painted on canvases at run time, and the soundtrack and film are produced by the scripts in `Content/UI/WebUI/Showcase/tools`. No stock footage, sampled audio or private game asset is included. Generated primitive meshes and sample game logic do not depend on private game assets.
+Everything else in the sample is original and generated: the pavilion, the solar system, the galaxy, the black hole and the asteroid field are built in code and shaded by procedures, the pavilion's textures are painted on canvases at run time, and the soundtrack and film are produced by the scripts in `Content/Python/Showcase` and `Content/UI/WebUI/Showcase/tools`. No stock footage, sampled audio or private game asset is included. Generated primitive meshes and sample game logic do not depend on private game assets.
 
 A Fab plugin package, a local installation bundle, a public example and a packaged game contain different files:
 

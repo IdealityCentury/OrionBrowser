@@ -210,7 +210,7 @@ const session = createOrionPointerSession({
 - `svg`、`canvas` 内的文字不参与自动策略。自绘文字用 `api.getFontFamilyForSize(sizePx)`（或 `resolveFontRoleForSize`）取字体族。
 - 首帧字体身份：InstantScreen 首帧捕获只保留指向 `orion-webui.local/.../ue/fonts/` 的样式表 link，Controller Host 也固定引用 `/<AppId>/ue/fonts/orion-fonts.css`。`<AppId>` 必须是运行时真正加载的那个 App（与包身份一致）；改了同名但未加载的 App 不会生效。
 - InstantScreen 的展示门禁按 Manifest 的 family / style / weight 对已挂载的真实文本逐个执行 `document.fonts.load()` 与 `check()`，不是只等一次 `document.fonts.ready`。因此：首帧要出现的文字在状态提交时就挂进 DOM；页面自己的准备逻辑不把 `document.fonts.ready` 当成“字体已就绪”，也不用 `requestAnimationFrame` 推进准备期等待——准备期文档不可见，rAF 不保证触发，会与 Reveal 门禁互相等待。用 Promise 链或 `MessageChannel`。
-- 需要新字体时由 UE 侧为每个实际使用的 family + weight 提供一份完整 WOFF2 的 `UOrionWebUIFontPayload`，填到 `FOrionWebUIFontFaceEntry.WebPayload`；不做字符子集，不填 `UnicodeRangeCss`，同一 family + weight + style 只有一个 Face。生成工具是 `<OrionBrowser>/Scripts/Fonts/generate-orion-webui-font-payload.py`（`--font`、`--output`、`--full-font`）。
+- 需要新字体时由 UE 侧为每个实际使用的 family + weight 提供一份完整 WOFF2 的 `UOrionWebUIFontPayload`，填到 `FOrionWebUIFontFaceEntry.WebPayload`；不做字符子集，不填 `UnicodeRangeCss`，同一 family + weight + style 只有一个 Face。生成工具是 `<OrionBrowser>/Content/Python/Fonts/generate-orion-webui-font-payload.py`（`--font`、`--output`、`--full-font`）。
 
 ### B2. 图片
 
@@ -236,7 +236,7 @@ export function resolvePreviewUrl(previewId: unknown): string {
 }
 ```
 
-- 转 WebP 可用 `<OrionBrowser>/Scripts/Images/optimize-webui-image.py`（`--input`、`--output`，可选 `--crop x,y,w,h`、`--size WxH`、`--fit contain|stretch`、`--quality`、`--lossless`）。
+- 转 WebP 可用 `<OrionBrowser>/Content/Python/Images/optimize-webui-image.py`（`--input`、`--output`，可选 `--crop x,y,w,h`、`--size WxH`、`--fit contain|stretch`、`--quality`、`--lossless`）。
 - 模板与非测试 `.ts` 里的每个 `<img>` 标签都写静态属性 `decoding="async"`，放在 `<img` 之后第一个（App 合同脚本的匹配方式见 [Web App 脚手架](web-app-scaffold.zh-CN.md)）。`<OrionBrowser>/Content/UI/WebUI/Shared` 的 `npm run images:decoding:check` 检查 `<WebUIRoot>` 下全部 App；`images:decoding:fix` 会改写所有 App 的源码，只在用户明确要求时运行，自己的 App 手工补齐。
 - 图片保持原始比例：给容器定 `aspect-ratio`，图片用 `object-fit: contain` 或 `cover`，不分别拉伸宽高。
 - 禁止：把图片编码成 Base64 放进状态或经 Bridge 传字节、写临时 PNG 文件、逐帧 Readback、把 Runtime Image 当视频流用。
