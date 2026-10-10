@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebUI 新建界面"
+  short_description: "用 OrionBrowser 从零新建 WebUI 界面：脚手架、宿主接入、合同资源与构建验证。"
+  default_prompt: "使用 $orion-webui-creation 新建一个 WebUI 界面。先确定界面形态与 C++ 权威边界，再搭 App 脚手架、接 Bridge 与生命周期、完成 UE 宿主与所需资产接线，按宿主工程自己的合同构建并分层说明验证范围；测试仅按已有明确授权执行。"

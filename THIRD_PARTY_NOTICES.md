@@ -10,8 +10,9 @@ The OrionBrowser commercial license does not replace licenses for included third
 | Vue | 3.5.43 | [MIT license](Resources/Licenses/Vue-LICENSE.txt) |
 | three.js | 0.180.0 | [MIT license](Resources/Licenses/three-LICENSE.txt) |
 | Noto Sans SC | 2.004 variable font, unmodified | [SIL Open Font License 1.1](Resources/Licenses/NotoSansSC-LICENSE.txt) |
+| Geist and Geist Mono | 1.7.2 variable fonts, unmodified | [SIL Open Font License 1.1](Resources/Licenses/Geist-LICENSE.txt) |
 
-The CEF runtime staging rules also copy `LICENSE.txt` and `CREDITS.html` beside the browser DLLs in the packaged game. The Showcase production app carries Vue, three.js and font licenses under its `licenses` directory.
+The CEF runtime staging rules also copy `LICENSE.txt` and `CREDITS.html` beside the browser DLLs in the packaged game. The Showcase production app carries Vue, three.js and font licenses under its `licenses` directory. Its soundtrack and film were synthesized and rendered for this sample by the scripts in the app's `tools` directory; they contain no third-party recordings.
 
 WebUIStudio is a separate companion application. Its distribution includes Electron/Chromium, Node/npm, Python/PyInstaller and application dependency notices. Those notices belong to the exact Studio build and remain in its extracted distribution. Consult them before redistributing or modifying that application.
 
