@@ -15,10 +15,10 @@ OrionBrowser 将本地 HTML、CSS 与 JavaScript 界面嵌入 Unreal Widget。�
 
 | 教程 | 适合 | 内容 |
 | --- | --- | --- |
-| [1. 用 AI 制作界面（推荐）](tutorial-1-ai.zh-CN.md) | 想最快做出界面，或不熟悉网页开发 | 每一步该对 Codex 或 Claude 说什么：定 UI 设定集、定数据与操作、写界面、提修改、蓝图接线、指定声音、测试 |
-| [2. 自己动手做界面](tutorial-2-build-it-yourself.zh-CN.md) | 想自己写网页，或要查某项功能的做法 | 从空目录建 App，到通信、输入、声音、文字、字体、图片、WorldUI、远程网站、安全、性能与调试的全部操作 |
-| [3. 蓝图与 C++ 接入](tutorial-3-blueprint-and-cpp.zh-CN.md) | 负责 Unreal 这一侧 | 纯蓝图、C++、C++ 基类加蓝图子类三种接法，蓝图节点速查，CommonUI 与 InstantScreen |
-| [4. WebUIStudio](tutorial-4-webui-studio.zh-CN.md) | 要预览和检查界面，或在界面上标注后交给 AI | 启动、预览与视图、检查与日志、标注与发送、新建界面、隔离草稿、命令行检查 |
+| [1. 用 AI 制作界面（推荐）](tutorial-1-ai.zh-CN.md) | 想最快做出界面，或不熟悉网页开发 | 四步上手：打开 WebUIStudio、（可选）先做 UI 样式库、用提示词创建界面、添加声音 |
+| [2. WebUIStudio](tutorial-2-webui-studio.zh-CN.md) | 要预览和检查界面，或在界面上标注后交给 AI | 启动、预览与视图、检查与日志、标注与发送、新建界面、隔离草稿、命令行检查 |
+| [3. 蓝图与 C++ 接入](tutorial-3-blueprint-and-cpp.zh-CN.md) | 负责 Unreal 这一侧，要接线或写代码 | 纯蓝图、C++、C++ 基类加蓝图子类三种接法，蓝图节点速查，CommonUI 与 InstantScreen |
+| [4. 人工编写界面（不推荐）](tutorial-4-write-by-hand.zh-CN.md) | 想弄清每一步的原理，或要查某项功能的做法 | 不借助 AI，从空目录建 App，到通信、输入、声音、文字、字体、图片、WorldUI、远程网站、安全、性能与调试的全部操作 |
 
 四篇教程使用同一个例子（设置面板 `SettingsPanel`），可以对照阅读。
 

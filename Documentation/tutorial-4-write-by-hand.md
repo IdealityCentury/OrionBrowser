@@ -1,8 +1,8 @@
-# Tutorial 2: Build it yourself
+# Tutorial 4: Write the interface by hand (not recommended)
 
-No AI: start from an empty folder, write the page, build it, put it in Unreal, connect the two sides, and then use input, sound, text, images, WorldUI and remote websites one by one. This tutorial covers every OrionBrowser operation, and each part can be read on its own.
+No AI: start from an empty folder and do everything by hand: write the page, build it, put it in Unreal, connect the two sides, and then use input, sound, text, images, WorldUI and remote websites one by one. **This is not the recommended way to make an interface**: handing the same interface to AI as in [Tutorial 1](tutorial-1-ai.md) is much faster. This tutorial is for readers who want to understand how each step works, and for reference: it covers every OrionBrowser operation, and each part can be read on its own.
 
-[简体中文](tutorial-2-build-it-yourself.zh-CN.md) · [Manual index](README.md) · To let AI write the page, see [Tutorial 1](tutorial-1-ai.md). For the Unreal side in Blueprint and C++, see [Tutorial 3](tutorial-3-blueprint-and-cpp.md). For the preview tool, see [Tutorial 4](tutorial-4-webui-studio.md).
+[简体中文](tutorial-4-write-by-hand.zh-CN.md) · [Manual index](README.md) · To let AI write the page, see [Tutorial 1](tutorial-1-ai.md). For the preview tool, see [Tutorial 2](tutorial-2-webui-studio.md). For the Unreal side in Blueprint and C++, see [Tutorial 3](tutorial-3-blueprint-and-cpp.md).
 
 ## How it works
 
@@ -933,7 +933,7 @@ The page's own `console.log` does not appear in the Output Log. Use the develope
 After every change, in this order:
 
 1. `npm.cmd run typecheck`, `npm.cmd test`, `npm.cmd run build`.
-2. Look at every view in [WebUIStudio](tutorial-4-webui-studio.md) or a browser.
+2. Look at every view in [WebUIStudio](tutorial-2-webui-studio.md) or a browser.
 3. Confirm in UMG Designer that the page loads, and check that every control has an Id (the "Inspect" tab of WebUIStudio, or the control Id preview in Designer).
 4. Operate it in PIE: mouse, keyboard, gamepad, IME, both languages, sound, repeated opening and closing.
 5. [Package](packaging.md) and go through it again in the packaged game. An up-to-date `dist` must exist before packaging.

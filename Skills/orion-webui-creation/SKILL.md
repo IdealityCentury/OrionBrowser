@@ -29,8 +29,8 @@ description: "使用 OrionBrowser 1.0.0 创建或修改 Unreal WebUI：连接蓝
 ## 需要细节时阅读
 
 - [蓝图与 C++ 接入教程](../../Documentation/tutorial-3-blueprint-and-cpp.zh-CN.md)
-- [AI 制作流程与提示词](../../Documentation/tutorial-1-ai.zh-CN.md)、[WebUIStudio 教程](../../Documentation/tutorial-4-webui-studio.zh-CN.md)
-- [从零建 App，以及通信、输入、音效、字体、图片与 WorldUI](../../Documentation/tutorial-2-build-it-yourself.zh-CN.md)
+- [AI 制作流程与提示词](../../Documentation/tutorial-1-ai.zh-CN.md)、[WebUIStudio 教程](../../Documentation/tutorial-2-webui-studio.zh-CN.md)
+- [从零建 App，以及通信、输入、音效、字体、图片与 WorldUI](../../Documentation/tutorial-4-write-by-hand.zh-CN.md)
 - [打包和故障排查](../../Documentation/packaging.zh-CN.md)
 
 资产只通过 Unreal 正式接口创建、编译和精确保存，不以文本或二进制编辑器修改 uasset/umap。交付写明实际保存的资产、事件合同、运行检查和未验证项；不把设计稿或静态检查当作运行成功。

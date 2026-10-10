@@ -29,8 +29,8 @@ For UE 5.8 / Win64, with the default `DefaultWebUIRenderMode=LegacyTexture`. Loc
 ## Read when you need the details
 
 - [Blueprint and C++ integration tutorial](../../Documentation/tutorial-3-blueprint-and-cpp.md)
-- [AI workflow and prompts](../../Documentation/tutorial-1-ai.md), [WebUIStudio tutorial](../../Documentation/tutorial-4-webui-studio.md)
-- [Building an app from scratch, and messaging, input, sound, fonts, images and WorldUI](../../Documentation/tutorial-2-build-it-yourself.md)
+- [AI workflow and prompts](../../Documentation/tutorial-1-ai.md), [WebUIStudio tutorial](../../Documentation/tutorial-2-webui-studio.md)
+- [Building an app from scratch, and messaging, input, sound, fonts, images and WorldUI](../../Documentation/tutorial-4-write-by-hand.md)
 - [Packaging and troubleshooting](../../Documentation/packaging.md)
 
 Create, compile and precisely save assets only through Unreal's official APIs; do not modify uasset/umap files with a text or binary editor. In the handoff, state the assets actually saved, the event contracts, the checks run and what was not verified; do not treat a design draft or a static check as a successful run.

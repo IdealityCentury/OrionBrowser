@@ -16,7 +16,7 @@ This public repository contains documentation, AI creation Skills, a separate Bl
 
 The separate [Orion Station Blueprint project](Examples/OrionBrowserTemplate/README.md) contains its own startup map, configuration and fixed packaging scripts. Install your licensed OrionBrowser plugin under its `Plugins/OrionBrowser` directory before opening the project. The example does not include the commercial plugin or any private game module.
 
-[Tutorial 1: Build an interface with AI](Documentation/tutorial-1-ai.md) · [Tutorial 2: Build it yourself](Documentation/tutorial-2-build-it-yourself.md) · [Tutorial 3: Blueprint and C++ integration](Documentation/tutorial-3-blueprint-and-cpp.md) · [Tutorial 4: WebUIStudio](Documentation/tutorial-4-webui-studio.md) · [Orion Station sample](Documentation/sample.md)
+[Tutorial 1: Build an interface with AI](Documentation/tutorial-1-ai.md) · [Tutorial 2: WebUIStudio](Documentation/tutorial-2-webui-studio.md) · [Tutorial 3: Blueprint and C++ integration](Documentation/tutorial-3-blueprint-and-cpp.md) · [Tutorial 4: Write the interface by hand](Documentation/tutorial-4-write-by-hand.md) · [Orion Station sample](Documentation/sample.md)
 
 The supported default is `DefaultWebUIRenderMode=LegacyTexture`. Unreal Blueprint or C++ owns game state; web code displays state and submits action requests.
 
@@ -37,6 +37,6 @@ Cook/packaging prepares Helper. Packaged Development and Shipping games use thei
 
 “猎户空间站”是中英双语蓝图示例，展示菜单、设置、背包、任务状态、声音、输入、WorldUI、纹理、运行时图片、three.js 和独立官网浏览区域。具体实现与运行验收边界请查看发行验收记录，Studio 预览不代替 Unreal 或成品包测试。
 
-[教程 1：用 AI 制作界面](Documentation/tutorial-1-ai.zh-CN.md) · [教程 2：自己动手做界面](Documentation/tutorial-2-build-it-yourself.zh-CN.md) · [教程 3：蓝图与 C++ 接入](Documentation/tutorial-3-blueprint-and-cpp.zh-CN.md) · [教程 4：WebUIStudio](Documentation/tutorial-4-webui-studio.zh-CN.md) · [打包说明](Documentation/packaging.zh-CN.md) · [第三方声明](THIRD_PARTY_NOTICES.md)
+[教程 1：用 AI 制作界面](Documentation/tutorial-1-ai.zh-CN.md) · [教程 2：WebUIStudio](Documentation/tutorial-2-webui-studio.zh-CN.md) · [教程 3：蓝图与 C++ 接入](Documentation/tutorial-3-blueprint-and-cpp.zh-CN.md) · [教程 4：人工编写界面](Documentation/tutorial-4-write-by-hand.zh-CN.md) · [打包说明](Documentation/packaging.zh-CN.md) · [第三方声明](THIRD_PARTY_NOTICES.md)
 
 Preserve the original third-party notices when redistributing their files. The companion release is immutable: changed binary bytes require a new plugin version and matching release tag.

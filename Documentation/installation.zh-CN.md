@@ -11,7 +11,7 @@
 5. 空白工程先按下文配置 CommonUI 视口；随附的猎户空间站工程已经包含此设置。
 6. 在内容浏览器启用 **显示插件内容**，打开 `OrionBrowser/Showcase/L_OrionBrowserOverview`，点击运行。
 
-每次打开工程不会自动启动 WebUIStudio。需要制作和预览页面时，使用关卡编辑器工具栏上的 **WebUIStudio** 按钮，见[教程 4](tutorial-4-webui-studio.zh-CN.md)。
+每次打开工程不会自动启动 WebUIStudio。需要制作和预览页面时，使用关卡编辑器工具栏上的 **WebUIStudio** 按钮，见[教程 2](tutorial-2-webui-studio.zh-CN.md)。
 
 宿主在构造 Widget 时读取默认浏览器材质，不要求 Helper 已经就绪。插件分别管理这些同步默认值和 CEF 初始化；Helper 校验完成后，等待中的 Widget 或后续浏览器请求通过同一个单例入口完成初始化，无须重建宿主 Widget 或重启 Editor。真正的 CEF 初始化失败会报告错误，后续单例访问不会循环重试。
 
@@ -55,7 +55,7 @@ GameViewportClientClassName=/Script/CommonUI.CommonGameViewportClient
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Scripts\Ensure-OrionBrowserTools.ps1 -Component All -CheckOnly
 ```
 
-退出码 `0` 表示匹配，`1` 表示无效或不可用，`2` 表示取消。下载与校验使用 Windows PowerShell，不要求安装 Node 或 Python；制作网页需要 Node.js，见[教程 2](tutorial-2-build-it-yourself.zh-CN.md#准备)。
+退出码 `0` 表示匹配，`1` 表示无效或不可用，`2` 表示取消。下载与校验使用 Windows PowerShell，不要求安装 Node 或 Python；制作网页需要 Node.js，见[教程 4](tutorial-4-write-by-hand.zh-CN.md#准备)。
 
 ## 目录权限
 

@@ -15,10 +15,10 @@ English | [简体中文](README.zh-CN.md)
 
 | Tutorial | For | Content |
 | --- | --- | --- |
-| [1. Build an interface with AI (recommended)](tutorial-1-ai.md) | The fastest way to an interface, or little web experience | What to say to Codex or Claude at each step: the UI style guide, data and actions, writing the interface, revisions, Blueprint wiring, sounds, testing |
-| [2. Build it yourself](tutorial-2-build-it-yourself.md) | Writing the page yourself, or looking up how one feature is done | Every operation, from an app in an empty folder to messaging, input, sound, text, fonts, images, WorldUI, remote websites, security, performance and debugging |
-| [3. Blueprint and C++ integration](tutorial-3-blueprint-and-cpp.md) | Whoever owns the Unreal side | Three routes (Blueprint only, C++, a C++ base class with a Blueprint subclass), a Blueprint node reference, CommonUI and InstantScreen |
-| [4. WebUIStudio](tutorial-4-webui-studio.md) | Previewing and inspecting interfaces, or annotating them for an AI agent | Starting, previews and views, Inspect and Log, annotating and sending, new apps, isolated drafts, command-line checks |
+| [1. Build an interface with AI (recommended)](tutorial-1-ai.md) | The fastest way to an interface, or little web experience | Four steps to get started: open WebUIStudio, optionally make a UI style library first, create the interface with a prompt, add sounds |
+| [2. WebUIStudio](tutorial-2-webui-studio.md) | Previewing and inspecting interfaces, or annotating them for an AI agent | Starting, previews and views, Inspect and Log, annotating and sending, new apps, isolated drafts, command-line checks |
+| [3. Blueprint and C++ integration](tutorial-3-blueprint-and-cpp.md) | Whoever owns the Unreal side and wires or codes it | Three routes (Blueprint only, C++, a C++ base class with a Blueprint subclass), a Blueprint node reference, CommonUI and InstantScreen |
+| [4. Write the interface by hand (not recommended)](tutorial-4-write-by-hand.md) | Understanding how each step works, or looking up how one feature is done | Every operation without AI, from an app in an empty folder to messaging, input, sound, text, fonts, images, WorldUI, remote websites, security, performance and debugging |
 
 The four tutorials use the same example, a settings panel named `SettingsPanel`, so they can be read side by side.
 

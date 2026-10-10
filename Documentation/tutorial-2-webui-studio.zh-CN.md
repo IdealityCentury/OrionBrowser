@@ -1,8 +1,8 @@
-# 教程 4：WebUIStudio
+# 教程 2：WebUIStudio
 
 WebUIStudio 是随插件提供的桌面工具。它不启动游戏，直接加载工程里真实的网页源码或构建产物，用一个模拟的宿主代替 Unreal，让你逐页、逐状态地查看界面，检查控件，在界面上标注修改意见并交给 Codex 或 Claude。它只用于制作，不进入游戏包。
 
-[English](tutorial-4-webui-studio.md) · [手册目录](README.zh-CN.md) · 相关：[教程 1：用 AI 制作界面](tutorial-1-ai.zh-CN.md)、[教程 2：自己动手做界面](tutorial-2-build-it-yourself.zh-CN.md)。
+[English](tutorial-2-webui-studio.md) · [手册目录](README.zh-CN.md) · 相关：[教程 1：用 AI 制作界面](tutorial-1-ai.zh-CN.md)、[教程 4：人工编写界面](tutorial-4-write-by-hand.zh-CN.md)。
 
 本文的界面文字以 1.0.0 的中文界面为准。
 
@@ -109,7 +109,7 @@ App 还可以导出自己的预览适配器：一个名字形如 `create…Previ
 
 一个页面常常有好几种样子：不同语言、空数据、弹窗打开。在 App 根目录放一份 `webui-preview.json`，把它们登记成视图，就能在左栏逐个打开。它是纯数据，Studio 只读取不执行，也不会进入 `dist`。
 
-教程 2 的设置面板可以这样写：
+各篇教程共用的设置面板可以这样写：
 
 ```json
 {
@@ -229,7 +229,7 @@ Studio 可以把“这里要怎么改”连同控件位置、截图和源码行�
 
 左栏第一行的“新建界面”（命令搜索里也有）打开一个弹窗：
 
-1. 写“界面描述”：要做什么、显示什么、能操作什么。写法见[教程 1](tutorial-1-ai.zh-CN.md#第-3-步让-agent-写界面)。
+1. 写“界面描述”：要做什么、显示什么、能操作什么。写法见[教程 1](tutorial-1-ai.zh-CN.md#第-3-步用提示词创建界面)。
 2. “界面名”可选：大写字母开头，只含字母和数字，用作 AppId，不能与已有界面重名。留空则由接收方命名。
 3. 选择发给 Codex 还是 Claude，用新聊天还是专属聊天。
 4. 点“发送给…”。或者点“复制提示词”，把完整的提示词粘贴到任意对话里。

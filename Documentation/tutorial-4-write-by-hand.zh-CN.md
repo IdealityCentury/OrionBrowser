@@ -1,8 +1,8 @@
-# 教程 2：自己动手做界面
+# 教程 4：人工编写界面（不推荐）
 
-不借助 AI，从一个空目录开始：写网页、构建、放进 Unreal、接上通信，再逐项用上输入、声音、文字、图片、WorldUI 和远程网站。本教程覆盖 OrionBrowser 的全部操作，每一节都可以单独查阅。
+不借助 AI，从一个空目录开始手写：写网页、构建、放进 Unreal、接上通信，再逐项用上输入、声音、文字、图片、WorldUI 和远程网站。**不推荐用这种方式做界面**：同样的界面按[教程 1](tutorial-1-ai.zh-CN.md)交给 AI 要快得多。这一篇留给想弄清每一步原理的人，也供查阅：它覆盖 OrionBrowser 的全部操作，每一节都可以单独看。
 
-[English](tutorial-2-build-it-yourself.md) · [手册目录](README.zh-CN.md) · 让 AI 来写见[教程 1](tutorial-1-ai.zh-CN.md)，Unreal 侧的蓝图与 C++ 写法见[教程 3](tutorial-3-blueprint-and-cpp.zh-CN.md)，预览工具见[教程 4](tutorial-4-webui-studio.zh-CN.md)。
+[English](tutorial-4-write-by-hand.md) · [手册目录](README.zh-CN.md) · 让 AI 来写见[教程 1](tutorial-1-ai.zh-CN.md)，预览工具见[教程 2](tutorial-2-webui-studio.zh-CN.md)，Unreal 侧的蓝图与 C++ 写法见[教程 3](tutorial-3-blueprint-and-cpp.zh-CN.md)。
 
 ## 它是怎样工作的
 
@@ -933,7 +933,7 @@ worldOverlay.value?.registerRenderer("StationCell", ({ container, element }) => 
 每次修改后按顺序做：
 
 1. `npm.cmd run typecheck`、`npm.cmd test`、`npm.cmd run build`。
-2. 在 [WebUIStudio](tutorial-4-webui-studio.zh-CN.md) 或浏览器里看每个视图。
+2. 在 [WebUIStudio](tutorial-2-webui-studio.zh-CN.md) 或浏览器里看每个视图。
 3. 在 UMG Designer 里确认页面能加载，并核对控件 Id 齐全（WebUIStudio 的“检查”页签，或 Designer 里的控件 Id 预览）。
 4. 在 PIE 里实际操作：鼠标、键盘、手柄、输入法、两种语言、声音、反复打开关闭。
 5. [打包](packaging.zh-CN.md)后在成品游戏里再走一遍。打包前必须先有最新的 `dist`。

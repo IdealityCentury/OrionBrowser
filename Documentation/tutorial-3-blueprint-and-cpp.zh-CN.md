@@ -2,7 +2,7 @@
 
 网页写好之后，Unreal 这一侧要做四件事：**承载页面、接收操作、发布状态、提供声音与资源**。这四件事可以全部用蓝图完成，也可以用 C++，或者由 C++ 写基类、蓝图做子类。本教程把三种做法都写完整。
 
-[English](tutorial-3-blueprint-and-cpp.md) · [手册目录](README.zh-CN.md) · 网页由 AI 来写见[教程 1](tutorial-1-ai.zh-CN.md)，自己写见[教程 2](tutorial-2-build-it-yourself.zh-CN.md)。
+[English](tutorial-3-blueprint-and-cpp.md) · [手册目录](README.zh-CN.md) · 网页由 AI 来写见[教程 1](tutorial-1-ai.zh-CN.md)，人工编写见[教程 4](tutorial-4-write-by-hand.zh-CN.md)。
 
 不变的原则只有一条：**游戏状态、规则和存档属于 Unreal，网页只显示状态并提交操作。** 网页发来的每个参数都要在 Unreal 里重新检查；网页说“成功”不算成功。
 
@@ -26,7 +26,7 @@
 
 ## 本教程用到的合同
 
-沿用教程 1、2 的设置面板。AppId 为 `SettingsPanel`，生产文件位于工程 `Content/UI/WebUI/SettingsPanel/dist`。
+沿用教程 1 和教程 4 的设置面板。AppId 为 `SettingsPanel`，生产文件位于工程 `Content/UI/WebUI/SettingsPanel/dist`。
 
 | 方向 | 名称 | 参数 | 说明 |
 | --- | --- | --- | --- |
@@ -52,7 +52,7 @@
 | `EntryHtml` | `index.html` | 默认值 |
 | **Use Dev Server in Editor** | 取消勾选 | 默认勾选。勾选时 UMG Designer 会优先连接本机开发服务器 |
 
-其余属性保持默认。全部属性见[教程 2](tutorial-2-build-it-yourself.zh-CN.md#app-definition-全部属性)。
+其余属性保持默认。全部属性见[教程 4](tutorial-4-write-by-hand.zh-CN.md#app-definition-全部属性)。
 
 ### 2. 建承载页面的 Widget
 

@@ -11,7 +11,7 @@ All plugin paths below are relative to the directory containing `OrionBrowser.up
 5. In a blank project, configure the CommonUI viewport as described below. The supplied Orion Station project already includes this setting.
 6. In the Content Browser, enable **Show Plugin Content**, open `OrionBrowser/Showcase/L_OrionBrowserOverview`, then Play.
 
-Opening the project never launches WebUIStudio automatically. Use the **WebUIStudio** button on the Level Editor toolbar when you want to author or preview pages; see [Tutorial 4](tutorial-4-webui-studio.md).
+Opening the project never launches WebUIStudio automatically. Use the **WebUIStudio** button on the Level Editor toolbar when you want to author or preview pages; see [Tutorial 2](tutorial-2-webui-studio.md).
 
 A host can read the default browser materials while constructing a widget before the Helper is ready. The plugin manages these synchronous defaults separately from CEF initialization. After Helper validation, a waiting widget or a subsequent browser request initializes CEF through the same singleton entry point, without rebuilding the host widget or restarting the Editor. An actual CEF initialization failure is reported; subsequent singleton access does not repeatedly retry it.
 
@@ -55,7 +55,7 @@ On a connected machine, open the [releases page](https://github.com/IdealityCent
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Scripts\Ensure-OrionBrowserTools.ps1 -Component All -CheckOnly
 ```
 
-Exit `0` means both match. Exit `1` means invalid or unavailable; exit `2` is cancellation. Preparation scripts use Windows PowerShell and do not require Node or Python. Authoring a web application needs Node.js; see [Tutorial 2](tutorial-2-build-it-yourself.md#prepare).
+Exit `0` means both match. Exit `1` means invalid or unavailable; exit `2` is cancellation. Preparation scripts use Windows PowerShell and do not require Node or Python. Authoring a web application needs Node.js; see [Tutorial 4](tutorial-4-write-by-hand.md#prepare).
 
 ## Folder permissions
 

@@ -1,8 +1,8 @@
-# Tutorial 4: WebUIStudio
+# Tutorial 2: WebUIStudio
 
 WebUIStudio is the desktop tool supplied with the plugin. It does not start the game. It loads the real web source or build output from your project, replaces Unreal with a stand-in host, and lets you look at an interface page by page and state by state, inspect its controls, annotate changes on the interface itself and hand them to Codex or Claude. It is an authoring tool only and is not part of a packaged game.
 
-[简体中文](tutorial-4-webui-studio.zh-CN.md) · [Manual index](README.md) · Related: [Tutorial 1: Build an interface with AI](tutorial-1-ai.md), [Tutorial 2: Build it yourself](tutorial-2-build-it-yourself.md).
+[简体中文](tutorial-2-webui-studio.zh-CN.md) · [Manual index](README.md) · Related: [Tutorial 1: Build an interface with AI](tutorial-1-ai.md), [Tutorial 4: Write the interface by hand](tutorial-4-write-by-hand.md).
 
 Interface text in this document follows the English interface of version 1.0.0.
 
@@ -109,7 +109,7 @@ The "Build output" source runs no source code. A preview state that is a literal
 
 A page often has several appearances: another language, empty data, an open dialog. Put a `webui-preview.json` in the app root and register them as views, and each can be opened from the left rail. The file is pure data: Studio reads it and never executes it, and it does not go into `dist`.
 
-For the settings panel of Tutorial 2:
+For the settings panel the tutorials share:
 
 ```json
 {
@@ -229,7 +229,7 @@ Two things to know:
 
 "New app" in the first row of the left rail (also in command search) opens a sheet:
 
-1. Write the "Description": what to build, what it shows, what can be done in it. See [Tutorial 1](tutorial-1-ai.md#step-3-have-the-agent-write-the-interface) for how to write it.
+1. Write the "Description": what to build, what it shows, what can be done in it. See [Tutorial 1](tutorial-1-ai.md#step-3-create-the-interface-with-a-prompt) for how to write it.
 2. "App name" is optional: it starts with a capital letter and contains only letters and digits, is used as the AppId, and must not match an existing app. Left empty, the receiver names the app.
 3. Choose Codex or Claude, and a new chat or the Studio chat.
 4. Click "Send to …". Or click "Copy prompt" and paste the complete prompt into any conversation.

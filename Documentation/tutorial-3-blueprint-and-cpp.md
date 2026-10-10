@@ -2,7 +2,7 @@
 
 Once the page exists, the Unreal side has four jobs: **host the page, receive actions, publish state, and provide sounds and resources**. All four can be done in Blueprint alone, in C++, or with a C++ base class and a Blueprint subclass. This tutorial covers all three completely.
 
-[简体中文](tutorial-3-blueprint-and-cpp.zh-CN.md) · [Manual index](README.md) · To have AI write the page, see [Tutorial 1](tutorial-1-ai.md); to write it yourself, see [Tutorial 2](tutorial-2-build-it-yourself.md).
+[简体中文](tutorial-3-blueprint-and-cpp.zh-CN.md) · [Manual index](README.md) · To have AI write the page, see [Tutorial 1](tutorial-1-ai.md); to write it by hand, see [Tutorial 4](tutorial-4-write-by-hand.md).
 
 One principle never changes: **game state, rules and saved data belong to Unreal; the page renders state and submits actions.** Check every parameter from the page again in Unreal. A page saying "success" is not success.
 
@@ -26,7 +26,7 @@ For a first integration use "Blueprint only + plain widget". Everything else bui
 
 ## The contract used here
 
-The settings panel of Tutorials 1 and 2. The AppId is `SettingsPanel`, and the production files are in the project's `Content/UI/WebUI/SettingsPanel/dist`.
+The settings panel of Tutorials 1 and 4. The AppId is `SettingsPanel`, and the production files are in the project's `Content/UI/WebUI/SettingsPanel/dist`.
 
 | Direction | Name | Parameters | Meaning |
 | --- | --- | --- | --- |
@@ -52,7 +52,7 @@ A message the page sends with `emit` arrives in **On Web Event**. One sent with 
 | `EntryHtml` | `index.html` | The default |
 | **Use Dev Server in Editor** | cleared | Enabled by default. When enabled, UMG Designer prefers a local development server |
 
-Leave everything else at its default. All properties are listed in [Tutorial 2](tutorial-2-build-it-yourself.md#app-definition-properties).
+Leave everything else at its default. All properties are listed in [Tutorial 4](tutorial-4-write-by-hand.md#app-definition-properties).
 
 ### 2. Create the Widget that hosts the page
 
