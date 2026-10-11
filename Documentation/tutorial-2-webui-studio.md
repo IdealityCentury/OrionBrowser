@@ -322,7 +322,9 @@ The check only decides that the page rendered content and that the expectation h
 | `checks` | Reports and screenshots of the command-line checks |
 | `cache`, `screens`, `runtime` | Caches, screenshots and the extracted runtime files |
 
-"Local data" in Settings first lists what can be removed and then removes it: only caches left by closed previews and screenshots older than a day that no annotation refers to. Annotations, delivery records, drafts and exports are not removed.
+"Local data" in Settings shows total project Studio storage, usage by category and removable bytes. It lists runtimes, caches, screenshots, annotations and deliveries, drafts, task history, exports and development artifacts. The runtime list shows each version’s size and retention reason, with a separate action to remove old versions.
+
+Normal startup automatically removes old runtime versions, keeping the current version and one fallback. Running versions, bridge-hook references, incomplete versions and versions that cannot be verified are also retained. Cleanup rechecks processes, references and launcher locks before deletion; failed removals are skipped and reported during manual cleanup. Closed-preview caches and screenshots older than a day with no annotation references can also be removed. Annotations, deliveries, task history, drafts, exports and development builds are measured but never automatically deleted. Incomplete scans are marked, and cleanup rescans the remaining data.
 
 `Saved` is normally not in version control, so this data does not travel with the project. To delete the whole folder by hand, close Studio first. If you ever sent a request to Claude, the hooks in the project's `.claude/settings.json` whose `statusMessage` is `Orion WebUI Studio bridge` point to a program in the `runtime` folder; remove those hooks before deleting it.
 

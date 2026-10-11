@@ -1,4 +1,4 @@
-# OrionBrowser 1.0.1 documentation
+# OrionBrowser 1.0.2 documentation
 
 **Unreal Engine 5.8 · Windows 64-bit · Blueprint and C++**
 
