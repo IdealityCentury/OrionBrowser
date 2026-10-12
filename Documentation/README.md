@@ -8,14 +8,14 @@ English | [简体中文](README.zh-CN.md)
 
 ## Start here
 
-1. [Install and prepare the tools](installation.md)
+1. [Install the plugin and download its dependencies](installation.md): after enabling the plugin, click the **WebUIStudio** toolbar button first and download the dependencies in the window that opens
 2. Run the [Orion Station sample](sample.md) to confirm that the environment works
 
 ## Tutorials
 
 | Tutorial | For | Content |
 | --- | --- | --- |
-| [1. Build an interface with AI (recommended)](tutorial-1-ai.md) | The fastest way to an interface, or little web experience | Four steps to get started: open WebUIStudio, optionally make a UI style library first, create the interface with a prompt, add sounds |
+| [1. Build an interface with AI (recommended)](tutorial-1-ai.md) | The fastest way to an interface, or little web experience | Four steps to get started: download the dependencies and open WebUIStudio, optionally make a UI style library first, create the interface with a prompt, add sounds |
 | [2. WebUIStudio](tutorial-2-webui-studio.md) | Previewing and inspecting interfaces, or annotating them for an AI agent | Starting, previews and views, Inspect and Log, annotating and sending, new apps, isolated drafts, command-line checks |
 | [3. Blueprint and C++ integration](tutorial-3-blueprint-and-cpp.md) | Whoever owns the Unreal side and wires or codes it | Three routes (Blueprint only, C++, a C++ base class with a Blueprint subclass), a Blueprint node reference, CommonUI and InstantScreen |
 | [4. Write the interface by hand (not recommended)](tutorial-4-write-by-hand.md) | Understanding how each step works, or looking up how one feature is done | Every operation without AI, from an app in an empty folder to messaging, input, sound, text, fonts, images, WorldUI, remote websites, security, performance and debugging |

@@ -4,7 +4,13 @@
 
 ## 标准打包
 
-使用 Unreal 正常 Win64 打包或 Project Launcher。插件在 Editor Cook 准备入口校验 Helper，必要时下载，再把已验证文件复制到工程 `Binaries/Win64/OrionBrowserHelper.exe`。准备失败会报告错误并请求非零 Cook 退出。Cook 不需要 Studio。
+使用 Unreal 正常 Win64 打包或 Project Launcher。**打包之前先在编辑器里下载依赖**，见[安装](installation.zh-CN.md#下载依赖)。插件在 Editor Cook 准备入口按清单校验 Helper，再把已验证文件复制到工程 `Binaries/Win64/OrionBrowserHelper.exe`。Cook 不需要 Studio。
+
+打包不会下载任何东西。Helper 缺失或与插件版本不一致时，Cook 立即失败并请求非零退出，日志里有下面这条错误。按它说的做：打开编辑器，点击工具栏上的 **WebUIStudio** 按钮，在窗口里点“下载”，完成后重新打包。
+
+```text
+LogOrionBrowserPreparation: Error: OrionBrowser cannot be packaged (exit 1). OrionBrowserHelper.exe is missing. Nothing is downloaded automatically. Start Unreal Editor, click the WebUIStudio button on the toolbar and download the dependencies, then try again. See the documentation: https://orionue.com/orionbrowser/docs/en/installation/
+```
 
 纯蓝图工程打包仍然需要编译器。启用 OrionBrowser 与启用任何不在引擎默认集合内的代码插件一样，Unreal 会在工程 `Intermediate/Source` 下生成临时 Target，再编译并链接游戏可执行文件。打包机器需要安装 Unreal Engine 5.8 要求的 Visual Studio C++ 工具链与 Windows SDK。使用者不需要编写 C++；打开工程、制作界面和 PIE 运行使用插件预编译的编辑器二进制，不需要编译器。
 
@@ -14,7 +20,7 @@ CEF DLL、资源、语言包及版权声明通过 NonUFS 收录，Helper 也是 
 
 ## 固定命令行入口
 
-插件 `Scripts/Package-OrionBrowserProject.ps1` 在固定 BuildCookRun 命令前复用 Helper 预检。以参数提供引擎根目录、精确工程文件和输出目录。在插件根目录执行：
+插件 `Scripts/Package-OrionBrowserProject.ps1` 在固定 BuildCookRun 命令前做同样的 Helper 校验：Helper 缺失或不一致时，脚本打印同一条原因并以退出码 1 结束，不启动打包，也不下载。以参数提供引擎根目录、精确工程文件和输出目录。在插件根目录执行：
 
 ```powershell
 .\Scripts\Package-OrionBrowserProject.ps1 -EngineRoot $EngineRoot -ProjectFile $ProjectFile -ArchiveDirectory $ArchiveDirectory -Configuration Shipping
@@ -22,7 +28,7 @@ CEF DLL、资源、语言包及版权声明通过 NonUFS 收录，Helper 也是 
 
 示例工程还提供 `Scripts/Package-Development.ps1` 与 `Scripts/Package-Shipping.ps1`，均接受 `-EngineRoot`。重复 Stage 已 Cook 内容时，对插件入口传入 `-ReuseCooked`；即使跳过编译和 Cook，也会检查 Helper。复用内容必须已经与当前工程、插件及配置匹配，该选项不会更新过期的 Cook 资产。
 
-普通 Unreal C++ 编译和 BuildPlugin 不下载工具。不要在 Build.cs 构造函数中下载。
+编译、BuildPlugin、Cook 和打包都不下载依赖。不要在 Build.cs 构造函数中下载。
 
 插件描述文件还声明了 Editor 构建后步骤：`Prepare-OrionCEFRuntime.ps1` 将随包的匹配 CEF 运行文件复制到插件 `Binaries/Win64/OrionCEF3`。这只准备本地文件，用于补齐官方插件预编译过滤普通运行依赖复制动作的情况，不下载配套 EXE。
 
@@ -36,7 +42,8 @@ Development 与 Shipping 游戏使用打包到游戏二进制旁的 Helper，不
 
 | 现象 | 处理 |
 | --- | --- |
-| 准备返回 404 | 针对失败的 EXE，核对 `Config/OrionBrowserDistribution.json` 中它的 `releaseTag` 对应的 Release 是否存在、附件名是否一致，不替换成 latest 或其他版本。 |
+| 打包或 Cook 失败，日志有 `OrionBrowser cannot be packaged` | 依赖还没有下载，或者与插件版本不一致。打开编辑器，点击工具栏上的 **WebUIStudio** 按钮，在窗口里点“下载”，完成后重新打包，见[安装](installation.zh-CN.md#下载依赖)。 |
+| 下载返回 404 | 针对失败的 EXE，核对 `Config/OrionBrowserDistribution.json` 中它的 `releaseTag` 对应的 Release 是否存在、附件名是否一致，不替换成 latest 或其他版本。 |
 | 下载中断 | 保留 .part 和续传记录，重试；续传完成仍会计算完整哈希。 |
 | 大小相同却校验失败 | 从同一不可变 Release 重新获取，长度不能代替完整性校验。 |
 | 无权限或文件占用 | 修复访问权限，或正常关闭占用程序；插件不会提权或结束它。 |
@@ -51,4 +58,4 @@ Development 与 Shipping 游戏使用打包到游戏二进制旁的 Helper，不
 
 插件附带 Helper 源码，以及 `Scripts/BuildSupport/OrionBrowserHelper.Target.cs.template`。在支持 Program Target 的源码引擎宿主工程中，把模板复制到工程 `Source/OrionBrowserHelper.Target.cs`，安装本插件，使用匹配的 Win64 工具链构建。模板会把结果复制到现有插件二进制位置。正常使用纯蓝图示例时不需要添加这个 Target。
 
-自行重建的 Helper 与清单固定的字节不同，编辑器启动时会按清单重新取回发行版 Helper 并替换它。需要保留自建文件时，把 `Config/OrionBrowserDistribution.json` 中 Helper 条目的 `size` 和 `sha256` 改成自建文件的值；清单与本地文件一致时不会下载。
+自行重建的 Helper 与清单固定的字节不同，插件把它当作版本不一致：编辑器里的界面停用，打包失败，点击 **WebUIStudio** 按钮时窗口提示下载，而下载会用发行版替换自建文件。需要保留自建文件时，把 `Config/OrionBrowserDistribution.json` 中 Helper 条目的 `size` 和 `sha256` 改成自建文件的值；清单与本地文件一致时不会提示下载。

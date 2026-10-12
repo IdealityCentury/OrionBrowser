@@ -4,7 +4,13 @@ Project-relative paths start at the `.uproject` directory. Plugin-relative paths
 
 ## Standard packaging
 
-Use Unreal's normal Win64 packaging workflow or Project Launcher. The plugin's editor Cook hook verifies Helper, downloads it if necessary, and copies the verified file to project `Binaries/Win64/OrionBrowserHelper.exe`. A failed preparation reports an error and requests a nonzero Cook exit. Studio is not required for Cook.
+Use Unreal's normal Win64 packaging workflow or Project Launcher. **Download the dependencies in the editor before packaging**; see [Installation](installation.md#download-the-dependencies). The plugin's editor Cook hook verifies Helper against the manifest and copies the verified file to project `Binaries/Win64/OrionBrowserHelper.exe`. Studio is not required for Cook.
+
+Packaging downloads nothing. When Helper is missing or does not match the plugin version, Cook fails at once, requests a nonzero exit and logs the error below. Do what it says: open the editor, click the **WebUIStudio** button on the toolbar, click **Download** in the window, then package again.
+
+```text
+LogOrionBrowserPreparation: Error: OrionBrowser cannot be packaged (exit 1). OrionBrowserHelper.exe is missing. Nothing is downloaded automatically. Start Unreal Editor, click the WebUIStudio button on the toolbar and download the dependencies, then try again. See the documentation: https://orionue.com/orionbrowser/docs/en/installation/
+```
 
 A Blueprint-only project still needs a compiler to package. Enabling OrionBrowser, like any code plugin outside the engine's default set, makes Unreal generate a temporary target under project `Intermediate/Source`, then compile and link the game executable. Install the Visual Studio C++ toolchain and Windows SDK required by Unreal Engine 5.8 on the packaging machine. You write no C++. Opening the project, authoring and Play In Editor use the plugin's prebuilt editor binaries and need no compiler.
 
@@ -14,15 +20,15 @@ Always package the maps and assets your app actually references. Soft or dynamic
 
 ## Fixed command-line entry
 
-The plugin provides `Scripts/Package-OrionBrowserProject.ps1`. It performs the same Helper preflight before invoking its fixed `BuildCookRun` command. Supply your engine root, exact project file and archive directory as script parameters. From the plugin root:
+The plugin provides `Scripts/Package-OrionBrowserProject.ps1`. It performs the same Helper verification before invoking its fixed `BuildCookRun` command: when Helper is missing or mismatched, the script prints the same reason and exits with code 1, without starting the package and without downloading anything. Supply your engine root, exact project file and archive directory as script parameters. From the plugin root:
 
 ```powershell
 .\Scripts\Package-OrionBrowserProject.ps1 -EngineRoot $EngineRoot -ProjectFile $ProjectFile -ArchiveDirectory $ArchiveDirectory -Configuration Shipping
 ```
 
-The sample project includes `Scripts/Package-Development.ps1` and `Scripts/Package-Shipping.ps1`, each taking `-EngineRoot`. For a re-stage of already cooked output, use the plugin entry with `-ReuseCooked`. This runs Helper preparation even though Cook and compilation are skipped. Reused Cook content must already match the current project, plugin and configuration; this option does not update stale cooked assets.
+The sample project includes `Scripts/Package-Development.ps1` and `Scripts/Package-Shipping.ps1`, each taking `-EngineRoot`. For a re-stage of already cooked output, use the plugin entry with `-ReuseCooked`. This verifies Helper even though Cook and compilation are skipped. Reused Cook content must already match the current project, plugin and configuration; this option does not update stale cooked assets.
 
-Normal Unreal C++ compilation and `BuildPlugin` do not download tools. Do not put network downloads into `.Build.cs` constructors.
+Compilation, `BuildPlugin`, Cook and packaging never download the dependencies. Do not put network downloads into `.Build.cs` constructors.
 
 The plugin descriptor also declares an Editor post-build step: `Prepare-OrionCEFRuntime.ps1` copies the paired, already bundled CEF runtime into plugin `Binaries/Win64/OrionCEF3`. This is local file preparation only. It is needed when official plugin precompilation filters normal runtime-dependency copy actions; it never downloads companion executables.
 
@@ -36,10 +42,11 @@ Move the **whole** archive when testing portability, including the project direc
 
 | Symptom | Action |
 | --- | --- |
-| Preparation reports 404 | For the executable that failed, check that the Release named by its `releaseTag` in `Config/OrionBrowserDistribution.json` exists and contains that asset name. Do not substitute `latest` or a different version. |
+| Packaging or Cook fails and the log contains `OrionBrowser cannot be packaged` | The dependencies have not been downloaded, or they do not match the plugin version. Open the editor, click the **WebUIStudio** button on the toolbar, click **Download** in the window, then package again; see [Installation](installation.md#download-the-dependencies). |
+| The download reports 404 | For the executable that failed, check that the Release named by its `releaseTag` in `Config/OrionBrowserDistribution.json` exists and contains that asset name. Do not substitute `latest` or a different version. |
 | Download interrupted | Leave `.part` and its receipt in place; retry. A full hash is checked after resume. |
 | Same size but verification fails | Replace from the same immutable release. Size alone is not integrity proof. |
-| Access denied or file in use | Correct directory access or close the owning process normally. Preparation does not elevate or kill it. |
+| Access denied or file in use | Correct directory access or close the owning process normally. The plugin does not elevate or kill it. |
 | Blank local page | Confirm AppId, `dist/index.html`, production build and AppDefinition. Check On Web Error and browser console messages. |
 | Works in Studio, no Unreal action | Check On Web Event/Request binding, event name spelling, payload types, and Blueprint validation. Preview fixtures do not perform native business actions. |
 | Works in Editor, missing in package | Check cooked asset references, map list and UFS/NonUFS staging. Rebuild after changing production resources. |
@@ -51,4 +58,4 @@ Move the **whole** archive when testing portability, including the project direc
 
 The plugin includes its Helper source and `Scripts/BuildSupport/OrionBrowserHelper.Target.cs.template`. In a suitable source-engine host project, copy that template to the project's `Source/OrionBrowserHelper.Target.cs`, install this plugin, and build the Program Target with the matching Win64 toolchain. The template copies the result to the existing plugin binary path. Do not copy this target into the supplied pure Blueprint sample for normal use.
 
-A Helper you rebuild has different bytes from the one the manifest pins, so the editor fetches the released Helper again at startup and replaces yours. To keep your own build, set the `size` and `sha256` of the Helper entry in `Config/OrionBrowserDistribution.json` to the values of your file; nothing is downloaded while the manifest and the local file agree.
+A Helper you rebuild has different bytes from the one the manifest pins, so the plugin treats it as the wrong version: interfaces are disabled in the editor, packaging fails, and the **WebUIStudio** button opens the window that offers a download, which would replace your file with the released one. To keep your own build, set the `size` and `sha256` of the Helper entry in `Config/OrionBrowserDistribution.json` to the values of your file; no download is offered while the manifest and the local file agree.

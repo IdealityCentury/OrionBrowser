@@ -5,13 +5,14 @@ Describe the interface you want to an AI agent: it writes the web page and build
 [简体中文](tutorial-1-ai.zh-CN.md) · [Manual index](README.md) · The tool is covered in full in [Tutorial 2: WebUIStudio](tutorial-2-webui-studio.md), Blueprint wiring and C++ code in [Tutorial 3](tutorial-3-blueprint-and-cpp.md), and writing the page yourself without AI in [Tutorial 4](tutorial-4-write-by-hand.md).
 
 ```text
-① Open WebUIStudio → ② (optional) Make a UI style library first → ③ Create the interface with a prompt → ④ Add sounds
+① Download the dependencies, open WebUIStudio → ② (optional) Make a UI style library first → ③ Create the interface with a prompt → ④ Add sounds
 ```
 
-## Step 1: Open WebUIStudio
+## Step 1: Download the dependencies and open WebUIStudio
 
-1. Complete [installation](installation.md) and wait for tool preparation to finish.
-2. Click the **WebUIStudio** button on the Level Editor toolbar. It opens the current project.
+1. Complete [installation](installation.md) and enable the plugin in the editor.
+2. Click the **WebUIStudio** button on the Level Editor toolbar. The first click opens the **OrionBrowser Dependencies** window: click **Download**, wait for the two dependencies to finish (about 160 MB in total), then click **Open WebUIStudio**. The plugin never downloads them by itself, so this step cannot be skipped.
+3. Once the dependencies are in place, the button opens no window: it starts WebUIStudio with the current project.
 
 Then provide whatever is missing from the table below. Studio checks the first two itself after opening the project and reports them on its banner.
 

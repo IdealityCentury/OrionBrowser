@@ -8,10 +8,12 @@ WebUIStudio 是随插件提供的桌面工具。它不启动游戏，直接加�
 
 ## 启动
 
-- **从 Unreal 启动（推荐）**：点击关卡编辑器主工具栏上的 **WebUIStudio** 按钮，它和“添加”“蓝图”等按钮在同一组。Studio 会打开当前工程，并把它标记为已信任。
-- **直接启动**：双击插件目录下的 `Binaries/Win64/WebUIStudio.exe`，在弹出的对话框里选择 `.uproject`。这样打开的工程需要手动点一次“信任此工程”。
+**第一次使用先下载依赖。** 点击关卡编辑器工具栏上的 **WebUIStudio** 按钮；依赖缺失或与插件版本不一致时，会弹出“OrionBrowser 依赖”窗口，点“下载”，完成后点“打开 WebUIStudio”，见[安装](installation.zh-CN.md#下载依赖)。插件不会自行下载。依赖齐全之后，用下面两种方式启动：
 
-同一个工程再次启动时，会回到已经打开的窗口。提示 `The plugin's WebUIStudio.exe is missing` 时，说明工具还没有准备好，见[安装](installation.zh-CN.md)。
+- **从 Unreal 启动（推荐）**：点击关卡编辑器主工具栏上的 **WebUIStudio** 按钮，它和“添加”“蓝图”等按钮在同一组。Studio 会打开当前工程，并把它标记为已信任。
+- **直接启动**：双击插件目录下的 `Binaries/Win64/WebUIStudio.exe`（下载依赖之后才有这个文件），在弹出的对话框里选择 `.uproject`。这样打开的工程需要手动点一次“信任此工程”。
+
+同一个工程再次启动时，会回到已经打开的窗口。
 
 Studio 的全部数据都在工程的 `Saved/OrionUE/WebUIStudio` 下，包括设置、缓存、标注和报告；第一次启动时，运行文件也展开到这里。它不会往插件目录写配置；在这个目录之外，它只往工程里写一样东西：向 Claude 发送请求时登记在 `.claude/settings.json` 里的 Hook，见[发送](#发送)。
 

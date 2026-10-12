@@ -6,6 +6,10 @@
 
 不变的原则只有一条：**游戏状态、规则和存档属于 Unreal，网页只显示状态并提交操作。** 网页发来的每个参数都要在 Unreal 里重新检查；网页说“成功”不算成功。
 
+## 开始之前：下载依赖
+
+使用插件的第一步是下载它的两个依赖，否则界面在编辑器里只显示一行提示，工程也不能打包。点击关卡编辑器工具栏上的 **WebUIStudio** 按钮，在弹出的“OrionBrowser 依赖”窗口里点“下载”，等它完成；插件不会自行下载。已经下载过就跳过这一步，详见[安装](installation.zh-CN.md#下载依赖)。
+
 ## 先选路线
 
 | 路线 | 适合 | 特点 |
@@ -58,7 +62,7 @@
 
 1. 新建 **User Widget** 蓝图 `WBP_SettingsPanel`。
 2. 在 Designer 的控件面板搜索 **Orion WebUI** 并拖入，命名为 `WebUI`，勾选 **Is Variable**，让它铺满父级。
-3. 在 Details 里把 **App Definition** 设为 `DA_SettingsPanel`。Helper 就绪后，Designer 里会直接显示页面。
+3. 在 Details 里把 **App Definition** 设为 `DA_SettingsPanel`。依赖下载完成后，Designer 里会直接显示页面。
 
 ### 3. 显示出来
 

@@ -1,10 +1,10 @@
 # 猎户空间站 — 纯蓝图示例
 
-将完整的 OrionBrowser 1.0.1 插件安装到工程 `Plugins/OrionBrowser`，使用 **Unreal Engine 5.8 / Win64** 打开 `OrionBrowserTemplate.uproject`。
+将完整的 OrionBrowser 1.0.2 插件安装到工程 `Plugins/OrionBrowser`，使用 **Unreal Engine 5.8 / Win64** 打开 `OrionBrowserTemplate.uproject`。
 
 公开示例不附带收费插件。工程自己的关卡为 `/Game/OrionStation/L_OrionStation`；可复用的空间站蓝图、界面控件与网页生产文件由已安装的插件提供。工程没有自己的 C++ 游戏模块。
 
-等待编辑器中的 Helper 准备完成后点击 Play。界面支持简体中文和英文；任务进度、背包、偏好设置及 `OrionStationProfile` 存档由蓝图持有，网页只提交操作请求并显示状态。
+打开工程后先下载依赖：点击关卡编辑器工具栏上的 **WebUIStudio** 按钮，在弹出的“OrionBrowser 依赖”窗口里点“下载”，等它完成（插件不会自行下载），然后点击 Play。界面支持简体中文和英文；任务进度、背包、偏好设置及 `OrionStationProfile` 存档由蓝图持有，网页只提交操作请求并显示状态。
 
 整套界面完全由 HTML、CSS 与 JavaScript 绘制，像一层玻璃盖在关卡上：表面是半透明的，场景从下面透出来。四套主题（默认是深色的**曜石**）和三种背景可在设置页切换。屏幕顶部的灵动岛同时是导航、任务读数、消息提示和命令搜索（**Ctrl+K**）：它改变形状，而不是被替换。**展厅**页面包含十个房间：
 
@@ -27,11 +27,11 @@
 
 [中文手册](https://github.com/IdealityCentury/OrionBrowser/blob/main/Documentation/README.zh-CN.md) · [English](README.md) · [配套工具](https://github.com/IdealityCentury/OrionBrowser/releases)
 
-打包时运行 `Scripts/Package-Development.ps1` 或 `Scripts/Package-Shipping.ps1`，通过 `-EngineRoot` 参数提供所用引擎根目录。脚本使用插件固定入口，在 Cook 前准备 Helper；输出位于工程 `Builds/Development` 或 `Builds/Shipping`。Studio 不进入游戏包。
+打包时运行 `Scripts/Package-Development.ps1` 或 `Scripts/Package-Shipping.ps1`，通过 `-EngineRoot` 参数提供所用引擎根目录。脚本使用插件固定入口，在 Cook 前校验 Helper，不会下载：依赖还没有在编辑器里下载时，脚本直接报错并说明原因；输出位于工程 `Builds/Development` 或 `Builds/Shipping`。Studio 不进入游戏包。
 
 工程没有自己的 C++ 代码，但因为启用了代码插件，打包时仍会编译并链接游戏可执行文件。打包机器需要安装 Unreal Engine 5.8 要求的 Visual Studio C++ 工具链与 Windows SDK。打开工程、制作界面和 PIE 运行使用插件预编译的编辑器二进制，不需要编译器。
 
-分发和迁移游戏时保留完整输出目录。工具准备完成后，本地示例内容可以离线运行，只有官网访问需要联网；成品游戏不下载或修复 EXE。
+分发和迁移游戏时保留完整输出目录。依赖下载完成后，本地示例内容可以离线运行，只有官网访问需要联网；成品游戏不下载或修复 EXE。
 
 请以对应发行验收报告了解实际测试的环境与输入设备。资产制作、Studio 预览和蓝图编译，与 Unreal 游玩及成品包运行分别记录。
 

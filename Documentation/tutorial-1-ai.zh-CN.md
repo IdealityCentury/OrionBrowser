@@ -5,13 +5,14 @@
 [English](tutorial-1-ai.md) · [手册目录](README.zh-CN.md) · 工具的完整用法见[教程 2：WebUIStudio](tutorial-2-webui-studio.zh-CN.md)，蓝图接线与 C++ 代码见[教程 3](tutorial-3-blueprint-and-cpp.zh-CN.md)，不用 AI、自己写网页见[教程 4](tutorial-4-write-by-hand.zh-CN.md)。
 
 ```text
-① 打开 WebUIStudio → ②（可选）先做 UI 样式库 → ③ 用提示词创建界面 → ④ 添加声音
+① 下载依赖，打开 WebUIStudio → ②（可选）先做 UI 样式库 → ③ 用提示词创建界面 → ④ 添加声音
 ```
 
-## 第 1 步：打开 WebUIStudio
+## 第 1 步：下载依赖，打开 WebUIStudio
 
-1. 完成[安装](installation.zh-CN.md)，等工具准备完成。
-2. 点击关卡编辑器工具栏上的 **WebUIStudio** 按钮，它会打开当前工程。
+1. 完成[安装](installation.zh-CN.md)，在编辑器里启用插件。
+2. 点击关卡编辑器工具栏上的 **WebUIStudio** 按钮。第一次点击会弹出“OrionBrowser 依赖”窗口：点“下载”，等两个依赖下载完成（合计约 160 MB），再点“打开 WebUIStudio”。插件不会自行下载，所以这一步不能跳过。
+3. 依赖齐全之后，这个按钮不再弹出窗口，直接打开 WebUIStudio 并载入当前工程。
 
 然后补齐下表里缺少的东西。前两样 Studio 打开工程后会自己检查，缺少时显示在提示条上。
 

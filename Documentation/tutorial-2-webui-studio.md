@@ -8,10 +8,12 @@ Interface text in this document follows the English interface of version 1.0.0.
 
 ## Start
 
-- **From Unreal (recommended)**: click the **WebUIStudio** button on the Level Editor's main toolbar, in the same group as Add and Blueprints. Studio opens the current project and marks it as trusted.
-- **Directly**: double-click `Binaries/Win64/WebUIStudio.exe` in the plugin folder and choose a `.uproject` in the dialog. A project opened this way needs one click on "Trust project".
+**Download the dependencies before the first use.** Click the **WebUIStudio** button on the Level Editor toolbar; when a dependency is missing or does not match the plugin version, the **OrionBrowser Dependencies** window opens. Click **Download**, and when it has finished click **Open WebUIStudio**; see [Installation](installation.md#download-the-dependencies). The plugin never downloads them by itself. Once the dependencies are in place, start Studio in either of these ways:
 
-Starting the same project again returns to the window that is already open. The message `The plugin's WebUIStudio.exe is missing` means the tool has not been prepared yet; see [installation](installation.md).
+- **From Unreal (recommended)**: click the **WebUIStudio** button on the Level Editor's main toolbar, in the same group as Add and Blueprints. Studio opens the current project and marks it as trusted.
+- **Directly**: double-click `Binaries/Win64/WebUIStudio.exe` in the plugin folder (the file exists once the dependencies have been downloaded) and choose a `.uproject` in the dialog. A project opened this way needs one click on "Trust project".
+
+Starting the same project again returns to the window that is already open.
 
 All of Studio's data is under the project's `Saved/OrionUE/WebUIStudio`: settings, caches, annotations and reports. On first start its runtime files are extracted there too. It writes no configuration into the plugin folder. Outside that folder it writes one thing into the project: its hook entries in `.claude/settings.json` when you send a request to Claude, described under [Send](#send).
 

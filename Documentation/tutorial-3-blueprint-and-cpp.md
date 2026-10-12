@@ -6,6 +6,10 @@ Once the page exists, the Unreal side has four jobs: **host the page, receive ac
 
 One principle never changes: **game state, rules and saved data belong to Unreal; the page renders state and submits actions.** Check every parameter from the page again in Unreal. A page saying "success" is not success.
 
+## Before you start: download the dependencies
+
+The first step in using the plugin is to download its two dependencies; without them an interface shows only a line of text in the editor and the project cannot be packaged. Click the **WebUIStudio** button on the Level Editor toolbar, click **Download** in the **OrionBrowser Dependencies** window that opens, and wait for it to finish; the plugin never downloads them by itself. Skip this step if you have already done it. Details are in [Installation](installation.md#download-the-dependencies).
+
 ## Choose a route
 
 | Route | Suits | Characteristics |
@@ -58,7 +62,7 @@ Leave everything else at its default. All properties are listed in [Tutorial 4](
 
 1. Create a **User Widget** Blueprint named `WBP_SettingsPanel`.
 2. In Designer, find **Orion WebUI** in the palette, drag it in, name it `WebUI`, enable **Is Variable**, and let it fill its parent.
-3. In Details, set **App Definition** to `DA_SettingsPanel`. Once Helper is ready, Designer shows the page.
+3. In Details, set **App Definition** to `DA_SettingsPanel`. Once the dependencies have been downloaded, Designer shows the page.
 
 ### 3. Show it
 

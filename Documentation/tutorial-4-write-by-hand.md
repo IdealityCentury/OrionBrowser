@@ -26,7 +26,7 @@ The plugin provides three widgets:
 
 ## Prepare
 
-1. Complete [installation](installation.md) and wait until the tool preparation notification reports completion. In a blank project, also set the CommonUI viewport as described there; without it, keyboard and gamepad routing do not work.
+1. Complete [installation](installation.md) and **download the dependencies**: click the **WebUIStudio** button on the Level Editor toolbar, click **Download** in the **OrionBrowser Dependencies** window that opens, and wait for it to finish. The plugin never downloads them by itself. In a blank project, also set the CommonUI viewport as described on the installation page; without it, keyboard and gamepad routing do not work.
 2. Install Node.js 22 or a newer LTS release (npm is included). Only building the page needs it; running does not.
 3. Put the plugin in the project's `Plugins/OrionBrowser`. Web projects import the plugin's shared runtime by relative path, and the files below are written for this layout. If the plugin is installed elsewhere, rewrite those relative paths for its actual location.
 4. Run the supplied sample once (`OrionBrowser/Showcase/L_OrionBrowserOverview`) to confirm that the environment works.
@@ -575,7 +575,7 @@ The **Orion WebUI** widget renders the real page in Designer, without pressing P
 
 | Text shown | Meaning |
 | --- | --- |
-| `Preparing OrionBrowser tools...` | The tools are still being prepared; it refreshes when they are ready |
+| `OrionBrowser dependencies are missing. Click the WebUIStudio button on the toolbar to download them.` | The dependencies have not been downloaded, or the Helper does not match the plugin version. Click the **WebUIStudio** button on the toolbar to download them; it refreshes when the download finishes |
 | `Orion WebUI AppDefinition is not set.` | No App Definition is assigned |
 | `Orion WebUI dist entry is missing: <path>` | The app was not built, or `AppId` differs from the folder name |
 
@@ -917,7 +917,7 @@ Budgets for runtime images are in the `[OrionWebUI.RuntimeImage]` section, for e
 | Means | Use |
 | --- | --- |
 | **On Web Error** | Connect it to **Print String**. Bridge errors, blocked navigation and failed resource preparation arrive here |
-| Output Log | Filter by `LogOrionWebUIWidget` (the widget), `LogOrionWebUI` (resources and addresses), `LogOrionBrowser` (the browser), `LogOrionBrowserPreparation` (tool preparation) |
+| Output Log | Filter by `LogOrionWebUIWidget` (the widget), `LogOrionWebUI` (resources and addresses), `LogOrionBrowser` (the browser), `LogOrionBrowserPreparation` (dependency checks and downloads) |
 | Browser log | `Saved/Logs/cef3.log` |
 | Web developer tools | Start with `-cefdebug=9222` to open Chromium's remote debugging port, then connect Chrome to that port to inspect the page |
 | **Execute Javascript for Debug** | Runs a script in the page; for debugging only |

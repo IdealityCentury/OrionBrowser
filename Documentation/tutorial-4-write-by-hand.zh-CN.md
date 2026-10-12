@@ -26,7 +26,7 @@
 
 ## 准备
 
-1. 完成[安装](installation.zh-CN.md)，等工具准备的通知显示完成。空白工程还要按其中的说明设置 CommonUI 视口，否则键盘和手柄路由不可用。
+1. 完成[安装](installation.zh-CN.md)并**下载依赖**：点击关卡编辑器工具栏上的 **WebUIStudio** 按钮，在弹出的“OrionBrowser 依赖”窗口里点“下载”，等它完成。插件不会自行下载。空白工程还要按安装页的说明设置 CommonUI 视口，否则键盘和手柄路由不可用。
 2. 安装 Node.js 22 或更新的 LTS 版本（自带 npm）。只有构建网页需要它，运行不需要。
 3. 把插件放在工程的 `Plugins/OrionBrowser`。网页工程用相对路径引用插件的共享运行库，下面的文件都按这个布局写成；插件装在别处时，要按实际位置改写这些相对路径。
 4. 先运行一次随附示例（`OrionBrowser/Showcase/L_OrionBrowserOverview`），确认环境正常。
@@ -575,7 +575,7 @@ npm.cmd run dev
 
 | 看到的文字 | 含义 |
 | --- | --- |
-| `Preparing OrionBrowser tools...` | 工具还在准备，完成后自动刷新 |
+| `OrionBrowser dependencies are missing. Click the WebUIStudio button on the toolbar to download them.` | 依赖还没有下载，或者 Helper 与插件版本不一致。点击工具栏上的 **WebUIStudio** 按钮下载，完成后自动刷新 |
 | `Orion WebUI AppDefinition is not set.` | 没有指定 App Definition |
 | `Orion WebUI dist entry is missing: <路径>` | 没有构建，或 `AppId` 与目录名不一致 |
 
@@ -917,7 +917,7 @@ worldOverlay.value?.registerRenderer("StationCell", ({ container, element }) => 
 | 手段 | 用法 |
 | --- | --- |
 | **On Web Error** | 接到 **Print String**。通信错误、被拦截的导航、资源准备失败都从这里出来 |
-| Output Log | 过滤 `LogOrionWebUIWidget`（控件）、`LogOrionWebUI`（资源与地址）、`LogOrionBrowser`（浏览器）、`LogOrionBrowserPreparation`（工具准备） |
+| Output Log | 过滤 `LogOrionWebUIWidget`（控件）、`LogOrionWebUI`（资源与地址）、`LogOrionBrowser`（浏览器）、`LogOrionBrowserPreparation`（依赖校验与下载） |
 | 浏览器日志 | `Saved/Logs/cef3.log` |
 | 网页开发者工具 | 用启动参数 `-cefdebug=9222` 打开 Chromium 的远程调试端口，再用 Chrome 连接这个端口检查页面 |
 | **Execute Javascript for Debug** | 在页面里执行一段脚本，只用于调试 |

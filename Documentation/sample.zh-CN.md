@@ -10,7 +10,7 @@
 
 ## 打开示例
 
-在内容浏览器启用 **Show Plugin Content**，打开 `/OrionBrowser/Showcase/L_OrionBrowserOverview`，等待配套工具准备完成后运行 Play。独立 `OrionBrowserTemplate` 工程以自己的 `/Game/OrionStation/L_OrionStation` 为默认关卡，并复用插件示例资产；工程没有自己的 C++ 游戏模块。
+在内容浏览器启用 **Show Plugin Content**，打开 `/OrionBrowser/Showcase/L_OrionBrowserOverview`，先确认已经[下载依赖](installation.zh-CN.md#下载依赖)，再运行 Play。独立 `OrionBrowserTemplate` 工程以自己的 `/Game/OrionStation/L_OrionStation` 为默认关卡，并复用插件示例资产；工程没有自己的 C++ 游戏模块。
 
 示例使用插件默认的 `LegacyTexture`。官网访问需要联网，空间站界面、本地字体、three.js 场景、影片和配乐使用本地生产文件。
 

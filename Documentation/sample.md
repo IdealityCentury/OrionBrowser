@@ -10,7 +10,7 @@ Run `Scripts/Build-OrionWebUI.ps1` from the plugin directory to build the sample
 
 ## Open the sample
 
-Enable **Show Plugin Content** in the Content Browser, open `/OrionBrowser/Showcase/L_OrionBrowserOverview`, and run Play after companion-tool preparation completes. The independent `OrionBrowserTemplate` project starts in its own `/Game/OrionStation/L_OrionStation` map, which reuses the plugin sample assets. It has no project C++ module.
+Enable **Show Plugin Content** in the Content Browser, open `/OrionBrowser/Showcase/L_OrionBrowserOverview`, and Play once the [dependencies have been downloaded](installation.md#download-the-dependencies). The independent `OrionBrowserTemplate` project starts in its own `/Game/OrionStation/L_OrionStation` map, which reuses the plugin sample assets. It has no project C++ module.
 
 The sample uses the plugin's `LegacyTexture` default. The website needs an internet connection; the station UI, bundled fonts, three.js scenes, film and soundtrack use local production files.
 
