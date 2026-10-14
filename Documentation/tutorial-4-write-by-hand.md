@@ -904,6 +904,8 @@ Common settings in the `[OrionBrowser]` section of the project's `Config/Default
 | `DefaultWebUIRenderMode` | `LegacyTexture` | The render mode. Keep the default; it is the supported mode |
 | `bEnabled` | `True` | When `False`, no browser is created |
 | `bUseAdaptiveFrameRate` | `True` | The browser frame rate follows the game frame rate |
+| `bUseAcceleratedPaint` | `False` | When `True`, the page's picture stays on the graphics card on its way to Unreal instead of being read back into memory. See [Hardware-accelerated frame transfer](#hardware-accelerated-frame-transfer) |
+| `bUseZeroCopySharedSurface` | `True` | Only takes effect while `bUseAcceleratedPaint` is on: Unreal samples the browser's picture directly instead of copying it every frame |
 | `DefaultWebUIRenderScale` | `1.0` | Used when `BrowserRenderScale` of the App Definition is `0` |
 | `MaxWebUIRenderScale` | `2.0` | The upper limit of the render scale |
 | `HiddenBrowserFrameRate` | `0` | The frame rate of hidden browsers |
@@ -911,6 +913,23 @@ Common settings in the `[OrionBrowser]` section of the project's `Config/Default
 | `bEnableCEFFileLogging` | `True` | Writes the browser log to `Saved/Logs/cef3.log` (off in Shipping) |
 
 Budgets for runtime images are in the `[OrionWebUI.RuntimeImage]` section, for example `MaxOutputDimension=2048` and `RequestTimeoutSeconds=15`.
+
+### Hardware-accelerated frame transfer
+
+By default, every frame the browser draws is read back from the graphics card into memory and uploaded again by Unreal as a texture. The larger the interface and the more it moves, the more this step costs: one 3840 × 2160 picture is about 33 MB. With hardware acceleration on, the picture stays on the graphics card and Unreal uses it directly:
+
+```ini
+[OrionBrowser]
+bUseAcceleratedPaint=True
+```
+
+- Turn it on for full-screen interfaces, high resolutions, or pages with continuous animation, WebGL or video.
+- It works on Windows with D3D11 and D3D12 only. With any other RHI the setting is ignored and frames travel the default way.
+- `bUseZeroCopySharedSurface` defaults to `True`: Unreal samples the browser's picture directly instead of copying it every frame. A browser that cannot meet the conditions switches by itself to copying only the changed regions on the graphics card; you do not have to handle it.
+- The setting is read when a browser is created. Restart the editor or the game after changing it.
+- Hardware acceleration removes the transfer. The page's own drawing still shares the graphics card with the game, so the advice on a frame limit above still applies.
+
+To confirm it is working, filter the Output Log by `LogOrionBrowser`: once the page is shown there is a line `CEF shared-surface zero-copy presented its first frame`. `entered permanent browser fallback` means that browser switched to copying, and `Reason` on the same line says why. For a comparison, the launch argument `-nocefaccelpaint` turns hardware acceleration off and `-nocefzerocopy` turns off zero-copy only. These log lines are not available in Shipping.
 
 ## Part 12: Debugging
 

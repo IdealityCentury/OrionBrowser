@@ -122,7 +122,9 @@
 
 独立示例通过工程 `Config/DefaultGameUserSettings.ini` 将初始游戏帧率上限设为 60，为浏览器绘制、场景捕获和游戏留出 GPU 时间。这是示例工程的偏好设置；安装插件不会修改其他工程的帧率上限。已有用户保存的设置优先于这个默认值。
 
-在自己的纯蓝图游戏中，可用 Unreal 的 **Get Game User Settings → Set Frame Rate Limit → Apply Non-Resolution Settings** 选择适合的帧率上限，仅在玩家确认偏好时保存，并在目标硬件验证。不限帧游戏占满 GPU 时，即使原生游戏状态仍变化，浏览器的 GPU 回读也可能停滞。应降低游戏渲染负载或选择可持续的帧率上限；只降低浏览器帧率目标不一定能解决 GPU 争用。
+独立示例还在工程 `Config/DefaultEngine.ini` 的 `[OrionBrowser]` 段写了 `bUseAcceleratedPaint=True`：页面的画面留在显卡上交给 Unreal，不经过内存。这同样是示例工程的设置，插件的默认值是关闭；自己的工程要用时写上同一行，说明见[教程 4 的硬件加速的画面传输](tutorial-4-write-by-hand.zh-CN.md#硬件加速的画面传输)。
+
+在自己的纯蓝图游戏中，可用 Unreal 的 **Get Game User Settings → Set Frame Rate Limit → Apply Non-Resolution Settings** 选择适合的帧率上限，仅在玩家确认偏好时保存，并在目标硬件验证。不限帧游戏占满 GPU 时，即使原生游戏状态仍变化，浏览器的画面更新也可能停滞。应降低游戏渲染负载或选择可持续的帧率上限；只降低浏览器帧率目标不一定能解决 GPU 争用。
 
 展厅的性能展室可以用来在自己的硬件上试这件事：它有意加重页面的 GPU 和脚本负担，一次只动一项设置。
 

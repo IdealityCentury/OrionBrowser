@@ -122,7 +122,9 @@ The website uses a separate general browser widget. It is not the local Showcase
 
 The independent sample starts with a 60 FPS game limit in project `Config/DefaultGameUserSettings.ini`. This leaves GPU time for browser rendering, scene capture and the game. It is a sample-project preference; installing the plugin does not change another project's frame limit. Existing saved user settings take precedence over this default.
 
-In your own Blueprint game, use Unreal **Get Game User Settings → Set Frame Rate Limit → Apply Non-Resolution Settings** to choose an appropriate limit, and save it only when the player confirms the preference. Test on your supported hardware. If an uncapped game saturates the GPU, the browser's GPU readback can stall even while native game state continues to change. Lower game rendering load or choose a sustainable frame limit; reducing only the browser frame target may not resolve GPU contention.
+The independent sample also sets `bUseAcceleratedPaint=True` in the `[OrionBrowser]` section of project `Config/DefaultEngine.ini`: the page's picture stays on the graphics card on its way to Unreal and does not pass through memory. This too is a setting of the sample project, and the plugin's default is off; write the same line in your own project to use it, as described in [Hardware-accelerated frame transfer in Tutorial 4](tutorial-4-write-by-hand.md#hardware-accelerated-frame-transfer).
+
+In your own Blueprint game, use Unreal **Get Game User Settings → Set Frame Rate Limit → Apply Non-Resolution Settings** to choose an appropriate limit, and save it only when the player confirms the preference. Test on your supported hardware. If an uncapped game saturates the GPU, the browser's picture updates can stall even while native game state continues to change. Lower game rendering load or choose a sustainable frame limit; reducing only the browser frame target may not resolve GPU contention.
 
 The Benchmark room of the Showcase is a way to try this on your own hardware: it loads the page's GPU and script time on purpose, one setting at a time.
 

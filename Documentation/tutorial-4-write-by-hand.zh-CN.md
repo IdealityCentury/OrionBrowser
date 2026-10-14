@@ -904,6 +904,8 @@ worldOverlay.value?.registerRenderer("StationCell", ({ container, element }) => 
 | `DefaultWebUIRenderMode` | `LegacyTexture` | 渲染模式。保持默认；这是当前支持的模式 |
 | `bEnabled` | `True` | 设为 `False` 时不创建任何浏览器 |
 | `bUseAdaptiveFrameRate` | `True` | 浏览器帧率跟随游戏帧率自动调整 |
+| `bUseAcceleratedPaint` | `False` | 设为 `True` 后，页面的画面留在显卡上交给 Unreal，不再读回内存。见[硬件加速的画面传输](#硬件加速的画面传输) |
+| `bUseZeroCopySharedSurface` | `True` | 只在 `bUseAcceleratedPaint` 打开时起作用：Unreal 直接采样浏览器的画面，不逐帧拷贝 |
 | `DefaultWebUIRenderScale` | `1.0` | App Definition 的 `BrowserRenderScale` 为 `0` 时使用 |
 | `MaxWebUIRenderScale` | `2.0` | 渲染缩放的上限 |
 | `HiddenBrowserFrameRate` | `0` | 隐藏的浏览器的帧率 |
@@ -911,6 +913,23 @@ worldOverlay.value?.registerRenderer("StationCell", ({ container, element }) => 
 | `bEnableCEFFileLogging` | `True` | 把浏览器日志写到 `Saved/Logs/cef3.log`（Shipping 中关闭） |
 
 运行时图片的预算在 `[OrionWebUI.RuntimeImage]` 段，例如 `MaxOutputDimension=2048`、`RequestTimeoutSeconds=15`。
+
+### 硬件加速的画面传输
+
+默认情况下，浏览器每画出一帧，画面都要从显卡读回内存，再由 Unreal 上传成纹理。界面越大、动得越多，这一步越贵：一幅 3840 × 2160 的画面约 33 MB。打开硬件加速后，画面留在显卡上，Unreal 直接使用它：
+
+```ini
+[OrionBrowser]
+bUseAcceleratedPaint=True
+```
+
+- 全屏界面、高分辨率，或页面里有持续动画、WebGL、视频时，建议打开。
+- 只在 Windows 的 D3D11 和 D3D12 下起作用。使用其他 RHI 时这一项被忽略，画面仍按默认方式传输。
+- `bUseZeroCopySharedSurface` 默认为 `True`：Unreal 直接采样浏览器的画面，不逐帧拷贝。某个浏览器不满足条件时，它自动改为在显卡上只拷贝发生变化的区域，不需要你处理。
+- 这一项在创建浏览器时读取，修改后重启编辑器或游戏。
+- 硬件加速省掉的是传输。页面自己的绘制仍然和游戏共用显卡，上面关于帧率上限的建议依然适用。
+
+确认它在工作：在 Output Log 里过滤 `LogOrionBrowser`，页面显示后会有一行 `CEF shared-surface zero-copy presented its first frame`。出现 `entered permanent browser fallback` 表示这个浏览器改成了拷贝，同一行的 `Reason` 写明原因。做对比时，启动参数 `-nocefaccelpaint` 关闭硬件加速，`-nocefzerocopy` 只关闭零拷贝。这些日志在 Shipping 中不可用。
 
 ## 第 12 部分：调试
 

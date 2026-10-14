@@ -35,4 +35,4 @@
 
 请以对应发行验收报告了解实际测试的环境与输入设备。资产制作、Studio 预览和蓝图编译，与 Unreal 游玩及成品包运行分别记录。
 
-独立示例通过 `Config/DefaultGameUserSettings.ini` 将初始游戏帧率上限设为 60，为本地浏览器和场景捕获留出 GPU 时间。已有用户设置会覆盖这个初始偏好；插件不会对其他工程强加此上限。调整场景或适配其他硬件时，请参考手册中的示例渲染预算说明。
+独立示例通过 `Config/DefaultGameUserSettings.ini` 将初始游戏帧率上限设为 60，为本地浏览器和场景捕获留出 GPU 时间。已有用户设置会覆盖这个初始偏好；插件不会对其他工程强加此上限。示例还在 `Config/DefaultEngine.ini` 里写了 `[OrionBrowser] bUseAcceleratedPaint=True`，让页面的画面留在显卡上交给 Unreal；插件的默认值是关闭。调整场景或适配其他硬件时，请参考手册中的示例渲染预算说明。
